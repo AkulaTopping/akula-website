@@ -1,29 +1,63 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import Video from "./Video";
 
 export default function Catalog() {
   const [currentPage, setCurrentPage] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
-  const [flipDirection, setFlipDirection] = useState("next");
+  const [flipDirection, setFlipDirection] = useState<"next" | "prev">("next");
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+
+  const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const pages = [
-    "/images/catalog/1.png",
-    "/images/catalog/2.png",
-    "/images/catalog/3.png",
-    "/images/catalog/4.png",
-    "/images/catalog/5.png",
-    "/images/catalog/6.png",
+    "/images/catalog/1-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/2-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/3-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/4-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/5-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/6-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/7-Picsart-AiImageEnhancer.jpg",
   ];
 
   const flipDuration = 600;
+  const autoSwipeDelay = 3000;
+  const interactionPause = 5000;
+
+  const registerInteraction = () => {
+    setIsUserInteracting(true);
+    if (interactionTimeoutRef.current) {
+      clearTimeout(interactionTimeoutRef.current);
+    }
+    interactionTimeoutRef.current = setTimeout(() => {
+      setIsUserInteracting(false);
+    }, interactionPause);
+  };
+
+  useEffect(() => {
+    if (isUserInteracting) return;
+
+    const interval = setInterval(() => {
+      if (isFlipping) return;
+
+      setFlipDirection("next");
+      setIsFlipping(true);
+
+      setTimeout(() => {
+        setCurrentPage((p) => (p + 1) % pages.length);
+        setIsFlipping(false);
+      }, flipDuration);
+    }, autoSwipeDelay);
+
+    return () => clearInterval(interval);
+  }, [isFlipping, isUserInteracting, pages.length]);
 
   const handleNext = () => {
     if (isFlipping) return;
+    registerInteraction();
     setFlipDirection("next");
     setIsFlipping(true);
     setTimeout(() => {
@@ -34,6 +68,7 @@ export default function Catalog() {
 
   const handlePrev = () => {
     if (isFlipping) return;
+    registerInteraction();
     setFlipDirection("prev");
     setIsFlipping(true);
     setTimeout(() => {
@@ -52,27 +87,10 @@ export default function Catalog() {
           <p className="text-lg text-gray-600">Swipe through our collection</p>
         </div>
 
-        {/* CATALOG WRAPPER */}
         <div className="relative max-w-5xl mx-auto">
-          {/* VIDEO OVERLAY */}
-          <div className="absolute top-0 left-0 w-full h-56 z-20 overflow-hidden rounded-lg">
-            <Video />
-          </div>
-
-          {/* PUSH CONTENT DOWN SO IT'S NOT COVERED */}
           <div className="pt-56">
             <div className="perspective-container flex items-center justify-center">
               <div className="relative w-full max-w-4xl">
-                {/* STACKED SHADOW */}
-                <motion.div
-                  className="absolute inset-0 -z-10"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                >
-                  <div className="absolute inset-0 bg-white rounded-lg shadow-md translate-x-3 translate-y-3 opacity-30" />
-                  <div className="absolute inset-0 bg-white rounded-lg shadow-md translate-x-1.5 translate-y-1.5 opacity-50" />
-                </motion.div>
-
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentPage}
@@ -88,11 +106,8 @@ export default function Catalog() {
                       opacity: 0,
                     }}
                     transition={{ duration: 0.6, ease: "easeInOut" }}
+                    onPointerDown={registerInteraction}
                   >
-                    {/* GLOSS */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent pointer-events-none z-10" />
-
-                    {/* IMAGE */}
                     <div className="relative aspect-[3/4] w-full">
                       <Image
                         src={pages[currentPage]}
@@ -103,20 +118,16 @@ export default function Catalog() {
                         priority
                       />
                     </div>
-
-                    {/* EDGE SHADING */}
-                    <div className="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-black/5 to-transparent pointer-events-none" />
-                    <div className="absolute left-0 top-0 right-0 h-4 bg-gradient-to-b from-black/5 to-transparent pointer-events-none" />
                   </motion.div>
                 </AnimatePresence>
 
-              
                 <div className="flex justify-center gap-2 mt-10 mb-8">
                   {pages.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => {
                         if (isFlipping || index === currentPage) return;
+                        registerInteraction();
                         setFlipDirection(index > currentPage ? "next" : "prev");
                         setIsFlipping(true);
                         setTimeout(() => {
@@ -134,7 +145,6 @@ export default function Catalog() {
                   ))}
                 </div>
 
-              
                 <div className="flex justify-between items-center mt-8 px-4">
                   <button
                     onClick={handlePrev}

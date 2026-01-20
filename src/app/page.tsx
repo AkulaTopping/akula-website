@@ -14,7 +14,7 @@ export default function Home() {
       <Header />
       <Hero />
       <BestSelling />
-     <Video />
+      <Video />
       <Catalog />
       <FeaturedRecipes />
       <Footer />
