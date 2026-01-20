@@ -2,40 +2,40 @@ export default function FeaturedRecipes() {
   const recipes = [
     {
       id: 1,
-      title: 'Cocktails & Mocktails',
-      description: 'Sweet fruit mocktails and crème',
-      icon: '🍹',
-      color: 'from-orange-500 to-amber-500',
+      title: "Cocktails & Mocktails",
+      description: "Sweet fruit mocktails and crème",
+      icon: "🍹",
+      color: "from-orange-500 to-amber-500",
     },
     {
       id: 2,
-      title: 'Coffee Drinks',
-      description: 'Creamy iced caramel fares',
-      icon: '☕',
-      color: 'from-amber-700 to-orange-700',
+      title: "Coffee Drinks",
+      description: "Creamy iced caramel fares",
+      icon: "☕",
+      color: "from-amber-700 to-orange-700",
     },
     {
       id: 3,
-      title: 'Milkshakes & Smoothies',
-      description: 'Smooth protein-rich blends',
-      icon: '🥤',
-      color: 'from-amber-500 to-orange-600',
+      title: "Milkshakes & Smoothies",
+      description: "Smooth protein-rich blends",
+      icon: "🥤",
+      color: "from-amber-500 to-orange-600",
     },
     {
       id: 4,
-      title: 'Desserts & Ice Cream',
-      description: 'Delicious sweets tasty tops',
-      icon: '🍰',
-      color: 'from-rose-500 to-pink-600',
+      title: "Desserts & Ice Cream",
+      description: "Delicious sweets tasty tops",
+      icon: "🍰",
+      color: "from-rose-500 to-pink-600",
     },
     {
       id: 5,
-      title: 'Baking & Pastry',
-      description: 'Tasty treat decorations',
-      icon: '🧁',
-      color: 'from-orange-600 to-rose-600',
+      title: "Baking & Pastry",
+      description: "Tasty treat decorations",
+      icon: "🧁",
+      color: "from-orange-600 to-rose-600",
     },
-  ]
+  ];
 
   return (
     <section id="recipes" className="py-20 bg-secondary/5">
@@ -88,5 +88,5 @@ export default function FeaturedRecipes() {
         </div>
       </div>
     </section>
-  )
+  );
 }

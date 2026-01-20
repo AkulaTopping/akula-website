@@ -1,11 +1,10 @@
-"use client";
-import Header from "@/src/components/layout/Header";
-import Hero from "@/src/features/hero/Hero";
-import BestSelling from "@/src/features/best-selling/BestSellings";
-import Catalog from "@/src/features/catalog/Catalog";
-import FeaturedRecipes from "@/src/features/recipe/FeaturedRecipes";
-import Footer from "@/src/components/layout/Footer";
-
+'use client'
+import Header from '@/src/components/layout/Header'
+import Footer from '@/src/components/layout/Footer'
+import Hero from '../components/landing/Hero'
+import BestSelling from '../components/landing/BestSellings'
+import Catalog from '../components/landing/Catalog'
+import FeaturedRecipes from '../components/landing/FeaturedRecipes'
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -16,5 +15,5 @@ export default function Home() {
       <FeaturedRecipes />
       <Footer />
     </main>
-  );
+  )
 }
