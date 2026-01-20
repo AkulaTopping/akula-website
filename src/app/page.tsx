@@ -1,9 +1,9 @@
 "use client";
 import Header from "@/src/components/layout/Header";
-import Hero from "@/src/features/hero/Hero";
-import BestSelling from "@/src/features/best-selling/BestSellings";
-import Catalog from "@/src/features/catalog/Catalog";
-import FeaturedRecipes from "@/src/features/recipe/FeaturedRecipes";
+import Hero from "@/src/components/landing/Hero";
+import BestSelling from "@/src/components/landing/BestSellings";
+import Catalog from "@/src/components/landing/Catalog";
+import FeaturedRecipes from "@/src/components/landing/FeaturedRecipes";
 import Footer from "@/src/components/layout/Footer";
 
 export default function Home() {
