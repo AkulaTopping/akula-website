@@ -4,21 +4,21 @@ export const products = [
     name: "Chocolate Sauce",
     weight: "120",
     price: "130",
-    image: "/Images/bestSelling/chocolate-sauce.png",
+    image: "/images/bestSelling/chocolate-sauce.png",
   },
   {
     id: 2,
     name: "Strawberry Sauce",
     weight: "120",
     price: "130",
-    image: "/Images/bestSelling/strawberry-sauce.png",
+    image: "/images/bestSelling/strawberry-sauce.png",
   },
   {
     id: 3,
     name: "Caramel Sauce",
     weight: "120",
     price: "130",
-    image: "/Images/bestSelling/caramel.png",
+    image: "/images/bestSelling/caramel.png",
   },
 ];
 export const recipes = [

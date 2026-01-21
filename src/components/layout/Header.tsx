@@ -1,33 +1,42 @@
 import Link from "next/link";
+import Image from "next/image";
+
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-primary">
-          Akula Topping
+    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src={"/images/logo.png"}
+            alt="Logo"
+            width={110}
+            height={40}
+            priority
+            unoptimized
+          />
         </Link>
-        <nav className="hidden md:flex gap-8 items-center">
+
+        <nav className="flex items-center gap-8">
           <Link
-            href="#best-selling"
-            className="text-foreground hover:text-primary transition"
+            href="/products"
+            className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
           >
-            Best Selling
+            Products
           </Link>
+
           <Link
-            href="#catalog"
-            className="text-foreground hover:text-primary transition"
+            href="/about"
+            className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
           >
-            Catalog
+            About
           </Link>
+
           <Link
-            href="#recipes"
-            className="text-foreground hover:text-primary transition"
+            href="/products"
+            className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90"
           >
-            Recipes
+            Shop
           </Link>
-          <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:opacity-90 transition">
-            Shop Now
-          </button>
         </nav>
       </div>
     </header>

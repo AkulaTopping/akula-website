@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
-/* Base variables */
+/* CSS Variables */
 :root {
-  --background: #ffffff;
+  --background-gradient: #ebebeb;
+
   --foreground: #000000;
-  --text:#189e5d;
+  --text: #189e5d;
   --font-sans: Arial, Helvetica, sans-serif;
 }
 
-/* Tailwind theme mapping */
+/* Tailwind theme variables */
 @theme inline {
-  --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-logo: var(--text);
   --font-sans: var(--font-sans);
@@ -19,8 +19,10 @@
 /* Global styles */
 html,
 body {
-  background-color: #ffffff;
-  color: #000000;
-  font-family: var(--font-sans);
   min-height: 100%;
+  font-family: var(--font-sans);
+  color: var(--foreground);
+
+  /* ✅ Correct gradient usage */
+  background: var(--background-gradient);
 }

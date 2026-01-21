@@ -78,7 +78,7 @@ export default function Catalog() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-100 via-gray-50 to-white min-h-screen flex items-center justify-center">
+    <section id="catalog" className="py-2 from-gray-100 via-gray-50 to-white min-h-screen flex items-center justify-center ">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
