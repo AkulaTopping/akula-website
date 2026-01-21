@@ -39,6 +39,7 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
+        
 
         {/* Right image */}
         <div className="flex-1 flex justify-center relative">
