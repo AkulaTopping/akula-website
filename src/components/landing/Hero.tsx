@@ -39,7 +39,7 @@ export default function Hero() {
             </div>
           </motion.div>
         </div>
-        
+
 
         {/* Right image */}
         <div className="flex-1 flex justify-center relative">
@@ -59,7 +59,7 @@ export default function Hero() {
 
             <div className="relative z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.4)]">
               <Image
-                src="/Images/hero (1).png"
+                src="/images/hero (1).png"
                 width={700}
                 height={700}
                 loading="eager"
