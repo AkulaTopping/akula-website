@@ -38,7 +38,7 @@ export default function Hero() {
             <div className="w-full max-w-4xl">
               <Image
                 // src="/Images/hero (1).png"
-                src="/Images/hero_upscayl_2x_upscayl-lite-4x.webp"
+                src="/images/hero_upscayl_2x_upscayl-lite-4x.webp"
                 width={500}
                 height={500}
                 loading="eager"
