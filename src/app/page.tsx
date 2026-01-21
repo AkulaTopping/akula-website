@@ -1,4 +1,4 @@
-"use client";
+
 import Header from "@/src/components/layout/Header";
 import Hero from "@/src/components/landing/Hero";
 import BestSelling from "@/src/components/landing/BestSellings";
