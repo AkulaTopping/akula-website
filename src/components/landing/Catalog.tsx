@@ -1,161 +1,178 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { useState, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Catalog() {
-  const [currentPage, setCurrentPage] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isFlipping, setIsFlipping] = useState(false);
+  const [flipDirection, setFlipDirection] = useState<"next" | "prev">("next");
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+
+  const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const pages = [
-    {
-      title: 'Blue Berry',
-      subtitle: 'Premium Blue Berry Flavor',
-      details: 'Nutrition Facts per 100 ml: Energy 330 kcal, Fat 0g, Protein 0.5g, Carbohydrates 74.6g',
-    },
-    {
-      title: 'Strawberry',
-      subtitle: 'Fresh Strawberry Flavor',
-      details: 'Nutrition Facts per 100 ml: Energy 320 kcal, Fat 0g, Protein 0.3g, Carbohydrates 73.8g',
-    },
-    {
-      title: 'Mango',
-      subtitle: 'Tropical Mango Flavor',
-      details: 'Nutrition Facts per 100 ml: Energy 340 kcal, Fat 0g, Protein 0.4g, Carbohydrates 78.2g',
-    },
-    {
-      title: 'Chocolate',
-      subtitle: 'Rich Chocolate Flavor',
-      details: 'Nutrition Facts per 100 ml: Energy 350 kcal, Fat 1g, Protein 2g, Carbohydrates 76.5g',
-    },
-  ]
+    "/images/catalog/1-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/2-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/3-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/4-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/5-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/6-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/7-Picsart-AiImageEnhancer.jpg",
+  ];
+
+  const flipDuration = 600;
+  const autoSwipeDelay = 3000;
+  const interactionPause = 5000;
+
+  const registerInteraction = () => {
+    setIsUserInteracting(true);
+    if (interactionTimeoutRef.current) {
+      clearTimeout(interactionTimeoutRef.current);
+    }
+    interactionTimeoutRef.current = setTimeout(() => {
+      setIsUserInteracting(false);
+    }, interactionPause);
+  };
+
+  useEffect(() => {
+    if (isUserInteracting) return;
+
+    const interval = setInterval(() => {
+      if (isFlipping) return;
+
+      setFlipDirection("next");
+      setIsFlipping(true);
+
+      setTimeout(() => {
+        setCurrentPage((p) => (p + 1) % pages.length);
+        setIsFlipping(false);
+      }, flipDuration);
+    }, autoSwipeDelay);
+
+    return () => clearInterval(interval);
+  }, [isFlipping, isUserInteracting, pages.length]);
 
   const handleNext = () => {
-    setCurrentPage((prev) => (prev + 1) % pages.length)
-  }
+    if (isFlipping) return;
+    registerInteraction();
+    setFlipDirection("next");
+    setIsFlipping(true);
+    setTimeout(() => {
+      setCurrentPage((p) => (p + 1) % pages.length);
+      setIsFlipping(false);
+    }, flipDuration);
+  };
 
   const handlePrev = () => {
-    setCurrentPage((prev) => (prev - 1 + pages.length) % pages.length)
-  }
-
-  const currentPageData = pages[currentPage]
+    if (isFlipping) return;
+    registerInteraction();
+    setFlipDirection("prev");
+    setIsFlipping(true);
+    setTimeout(() => {
+      setCurrentPage((p) => (p - 1 + pages.length) % pages.length);
+      setIsFlipping(false);
+    }, flipDuration);
+  };
 
   return (
-    <section id="catalog" className="py-20 bg-background">
+    <section className="py-20 bg-gradient-to-br from-gray-100 via-gray-50 to-white min-h-screen flex items-center justify-center">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
             Product Catalog
           </h2>
-          <p className="text-lg text-foreground/60">
-            Browse our complete collection of natural toppings
-          </p>
+          <p className="text-lg text-gray-600">Swipe through our collection</p>
         </div>
 
-        {/* Book/Catalog Swipper */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Flip Card Container */}
-          <div className="perspective min-h-96 flex items-center justify-center">
-            <div className="relative w-full max-w-2xl">
-              {/* Book-like appearance with shadow */}
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border-8 border-secondary/30">
-                {/* Content with flip animation */}
-                <div
-                  className="relative transition-all duration-500 ease-out"
-                  style={{
-                    transformStyle: 'preserve-3d',
-                    minHeight: '400px',
-                  }}
-                >
-                  <div className="p-12 flex flex-col justify-center h-full bg-gradient-to-br from-secondary/10 to-accent/10">
-                    {/* Page number indicator */}
-                    <div className="absolute top-6 right-6 text-sm text-foreground/40">
-                      Page {currentPage + 1} of {pages.length}
+        <div className="relative max-w-5xl mx-auto">
+          <div className="pt-56">
+            <div className="perspective-container flex items-center justify-center">
+              <div className="relative w-full max-w-4xl">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentPage}
+                    className="relative bg-white rounded-lg shadow-2xl overflow-hidden"
+                    style={{ transformStyle: "preserve-3d" }}
+                    initial={{
+                      rotateY: flipDirection === "next" ? 90 : -90,
+                      opacity: 0,
+                    }}
+                    animate={{ rotateY: 0, opacity: 1 }}
+                    exit={{
+                      rotateY: flipDirection === "next" ? -90 : 90,
+                      opacity: 0,
+                    }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                    onPointerDown={registerInteraction}
+                  >
+                    <div className="relative aspect-[3/4] w-full">
+                      <Image
+                        src={pages[currentPage]}
+                        alt={`Page ${currentPage + 1}`}
+                        fill
+                        className="object-cover"
+                        quality={100}
+                        priority
+                      />
                     </div>
+                  </motion.div>
+                </AnimatePresence>
 
-                    {/* Content */}
-                    <div className="space-y-6">
-                      <div>
-                        <h3 className="text-5xl font-bold text-primary mb-2">
-                          {currentPageData.title}
-                        </h3>
-                        <p className="text-2xl text-secondary font-semibold">
-                          {currentPageData.subtitle}
-                        </p>
-                      </div>
-
-                      {/* Product image placeholder */}
-                      <div className="flex justify-center py-8">
-                        <div className="w-40 h-40 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center text-6xl">
-                          🍾
-                        </div>
-                      </div>
-
-                      {/* Nutrition details */}
-                      <div className="bg-white/50 rounded-lg p-6 border border-secondary/20">
-                        <p className="text-foreground/70 font-medium">
-                          {currentPageData.details}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                <div className="flex justify-center gap-2 mt-10 mb-8">
+                  {pages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        if (isFlipping || index === currentPage) return;
+                        registerInteraction();
+                        setFlipDirection(index > currentPage ? "next" : "prev");
+                        setIsFlipping(true);
+                        setTimeout(() => {
+                          setCurrentPage(index);
+                          setIsFlipping(false);
+                        }, flipDuration);
+                      }}
+                      className={`h-2.5 rounded-full transition-all duration-300 ${
+                        index === currentPage
+                          ? "bg-gray-800 w-10"
+                          : "bg-gray-300 w-2.5 hover:bg-gray-500"
+                      }`}
+                      aria-label={`Go to page ${index + 1}`}
+                    />
+                  ))}
                 </div>
-              </div>
 
-              {/* Page indicators */}
-              <div className="flex justify-center gap-2 mt-8 mb-8">
-                {pages.map((_, index) => (
+                <div className="flex justify-between items-center mt-8 px-4">
                   <button
-                    key={index}
-                    onClick={() => setCurrentPage(index)}
-                    className={`h-3 rounded-full transition-all ${
-                      index === currentPage
-                        ? 'bg-primary w-8'
-                        : 'bg-border w-3 hover:bg-primary/50'
-                    }`}
-                    aria-label={`Go to page ${index + 1}`}
-                  />
-                ))}
-              </div>
+                    onClick={handlePrev}
+                    disabled={isFlipping}
+                    className="bg-white p-4 rounded-full shadow-lg border disabled:opacity-40"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
 
-              {/* Navigation buttons */}
-              <div className="flex justify-between items-center -mx-16">
-                <button
-                  onClick={handlePrev}
-                  className="bg-primary text-primary-foreground p-3 rounded-full hover:opacity-90 transition shadow-lg hover:shadow-xl active:scale-95"
-                  aria-label="Previous page"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-
-                <button
-                  onClick={handleNext}
-                  className="bg-primary text-primary-foreground p-3 rounded-full hover:opacity-90 transition shadow-lg hover:shadow-xl active:scale-95"
-                  aria-label="Next page"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
+                  <button
+                    onClick={handleNext}
+                    disabled={isFlipping}
+                    className="bg-white p-4 rounded-full shadow-lg border disabled:opacity-40"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Transition animation CSS */}
           <style jsx>{`
-            @keyframes pageFlip {
-              0% {
-                transform: rotateY(0deg);
-                opacity: 1;
-              }
-              50% {
-                opacity: 0;
-              }
-              100% {
-                transform: rotateY(0deg);
-                opacity: 1;
-              }
+            .perspective-container {
+              perspective: 1500px;
             }
           `}</style>
         </div>
       </div>
     </section>
-  )
+  );
 }
