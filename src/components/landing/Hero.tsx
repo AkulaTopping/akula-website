@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center">
+    <section className="min-h-screen flex items-center justify-center text-[#ff7205] bg-amber-800">
       <div className="container mx-auto px-4 flex flex-col-reverse lg:flex-row items-center gap-4">
         {/* Left content */}
         <div className="flex-1 text-center lg:text-left">
@@ -15,7 +15,7 @@ export default function Hero() {
             and desserts. Enhance every moment with authentic flavors.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <button className="bg-foreground text-background px-8 py-3 rounded-lg font-semibold hover:scale-x-90 transition text-lg">
+            <button className="bg-foreground text-white px-8 py-3 rounded-lg font-semibold hover:scale-x-90 transition text-lg">
               Explore Flavors
             </button>
           </div>

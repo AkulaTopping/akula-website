@@ -8,7 +8,7 @@ export default function ProductShowcase() {
   const [active, setActive] = React.useState(products[0]);
 
   return (
-    <section className="relative min-h-screen bg-[#f7f7f7] flex-col items-center overflow-hidden">
+    <section id="best-selling" className="relative min-h-screen  flex-col items-center overflow-hidden">
       <div className="text-center mb-12 py-7">
         <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
           Best Selling Sauces
