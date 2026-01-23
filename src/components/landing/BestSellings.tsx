@@ -9,7 +9,7 @@ export default function ProductShowcase() {
   const [active, setActive] = React.useState(products[0]);
 
   return (
-    <section className="relative w-full h-[calc(100vh-64px)]  bg-[#f59e25] flex flex-col justify-center items-center p-6 overflow-hidden">
+    <section className="relative w-full h-[calc(100vh-64px)]  bg-secondary flex flex-col justify-center items-center p-6 overflow-hidden">
       <div className="w-full max-w-[1440px] mx-auto flex flex-col h-full">
         <div className="text-center mb-8 lg:mb-4">
           <h2 className="text-3xl md:text-5xl font-bold text-gray-800">

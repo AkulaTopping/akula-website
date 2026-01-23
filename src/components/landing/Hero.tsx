@@ -20,9 +20,9 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl lg:text-8xl font-black mb-6 leading-[0.95] text-white tracking-tighter">
-              Let <span className="text-[#f59e25]">Akula</span> take your drink
+              Let <span className="text-secondary">Akula</span> take your drink
               to a{" "}
-              <span className="bg-linear-to-r from-[#f59e25] to-orange-300 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-secondary to-orange-300 bg-clip-text text-transparent">
                 whole new level
               </span>
             </h1>
@@ -32,7 +32,7 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="bg-[#f59e25] text-white px-10 py-4 rounded-full font-bold hover:shadow-[0_0_20px_rgba(245,158,37,0.5)] transition-all text-lg group overflow-hidden relative">
+              <button className="bg-secondary text-white px-10 py-4 rounded-full font-bold hover:shadow-[0_0_20px_rgba(245,158,37,0.5)] transition-all text-lg group overflow-hidden relative">
                 <span className="relative z-10">Explore Flavors</span>
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform" />
               </button>
@@ -58,7 +58,7 @@ export default function Hero() {
 
             <div className="relative z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.4)]">
               <Image
-                src="/Images/hero (1).png"
+                src="/images/heroimg.png"
                 width={700}
                 height={700}
                 loading="eager"

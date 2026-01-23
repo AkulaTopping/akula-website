@@ -2,16 +2,20 @@
 
 /* CSS Variables */
 :root {
-  --background-gradient: #ebebeb;
-
+  --main-color: #256799;
+  --secondary-color: #f59e25;
   --foreground: #000000;
+  --background: #ffffff;
   --text: #189e5d;
   --font-sans: Arial, Helvetica, sans-serif;
 }
 
 /* Tailwind theme variables */
 @theme inline {
+  --color-main: var(--main-color);
+  --color-secondary: var(--secondary-color);
   --color-foreground: var(--foreground);
+  --color-background: var(--background);
   --color-logo: var(--text);
   --font-sans: var(--font-sans);
 }
