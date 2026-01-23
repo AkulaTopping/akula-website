@@ -35,14 +35,7 @@ export default function Header() {
             className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
           >
             About
-          </Link>
-
-          <Link
-            href="/products"
-            className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:opacity-90"
-          >
-            Shop
-          </Link>
+          </Link> 
         </nav>
       </div>
     </header>
