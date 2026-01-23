@@ -18,6 +18,12 @@ export default function Header() {
 
         <nav className="flex items-center gap-8">
           <Link
+            href="/"
+            className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+          >
+           Home
+          </Link>
+          <Link
             href="/products"
             className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
           >
