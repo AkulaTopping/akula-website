@@ -100,7 +100,7 @@ const AboutPage = () => {
               className="relative w-full h-[420px] sm:h-[480px] md:h-full z-10"
             >
               <Image
-                src="/images/aboutimg.png"
+                src="/images/aboutimg.webp"
                 alt="Premium Quality Display"
                 fill
                 className="object-contain rounded-none md:rounded-xl shadow-2xl"

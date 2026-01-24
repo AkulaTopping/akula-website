@@ -21,7 +21,7 @@ export default function Header() {
             href="/"
             className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
           >
-           Home
+            Home
           </Link>
           <Link
             href="/products"
@@ -35,7 +35,7 @@ export default function Header() {
             className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
           >
             About
-          </Link> 
+          </Link>
         </nav>
       </div>
     </header>

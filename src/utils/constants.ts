@@ -4,28 +4,28 @@ export const products = [
     name: "Chocolate Sauce",
     weight: "120",
     price: "135",
-    image: "/images/bestSelling/chocolate-sauce.png",
+    image: "/images/bestSelling/chocolate-sauce.webp",
   },
   {
     id: 2,
     name: "Strawberry Sauce",
     weight: "120",
     price: "135",
-    image: "/images/bestSelling/strawberry-sauce.png",
+    image: "/images/bestSelling/strawberry-sauce.webp",
   },
   {
     id: 3,
     name: "Caramel Sauce",
     weight: "120",
     price: "135",
-    image: "/images/bestSelling/caramel.png",
+    image: "/images/bestSelling/caramel.webp",
   },
   {
     id: 4,
     name: "Raspberry Sauce",
     weight: "120",
     price: "135",
-    image: "/images/bestSelling/raspberry-sauce.png",
+    image: "/images/bestSelling/raspberry-sauce.webp",
   },
 ];
 export const recipes = [
@@ -57,19 +57,5 @@ export const recipes = [
     description: "Tasty treat decorations",
     image: "/images/feature/2.png",
     color: "from-orange-600 to-rose-600",
-  },
-  {
-    id: 6,
-    title: "Healthy Bowls",
-    description: "Fresh and balanced meals",
-    image: "/images/feature/4.png",
-    color: "from-emerald-500 to-lime-500",
-  },
-  {
-    id: 7,
-    title: "Quick Snacks",
-    description: "Fast bites anytime",
-    image: "/images/feature/7.png",
-    color: "from-sky-500 to-cyan-500",
   },
 ];
