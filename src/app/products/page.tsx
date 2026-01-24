@@ -3,81 +3,11 @@ import ProductsClient from "@/src//components/ProductsClient";
 
 const products: Product[] = [
   {
-    id: 1,
-    name: "Strawberry Splash",
-    brand: "Fresh Vibes",
-    price: 135,
-    image: "/images/products/strawberry.webp",
-    borderColor: "border-red-400",
-    flavor: "Strawberry",
-    liked: false,
-  },
-  {
-    id: 2,
-    name: "Blueberry Dream",
-    brand: "Fresh Vibes",
-    price: 135,
-    image: "/images/products/blueberry.webp",
-    borderColor: "border-blue-400",
-    flavor: "Blueberry",
-    liked: false,
-  },
-  {
-    id: 3,
-    name: "Raspberry Rush",
-    brand: "Fresh Vibes 120ml",
-    price: 135,
-    image: "/images/products/raspberry.webp",
-    borderColor: "border-pink-400",
-    flavor: "Raspberry",
-    liked: false,
-  },
-  {
-    id: 4,
-    name: "Peach Breeze",
-    brand: "Fresh Vibes",
-    price: 135,
-    image: "/images/products/peach.webp",
-    borderColor: "border-orange-400",
-    flavor: "Peach",
-    liked: false,
-  },
-  {
-    id: 5,
-    name: "Pineapple Punch",
-    brand: "Fresh Vibes",
-    price: 135,
-    image: "/images/products/pineapple.webp",
-    borderColor: "border-yellow-400",
-    flavor: "Pineapple",
-    liked: false,
-  },
-  {
-    id: 6,
-    name: "Kiwi Kick",
-    brand: "Fresh Vibes",
-    price: 135,
-    image: "/images/products/kiwi.webp",
-    borderColor: "border-green-400",
-    flavor: "Kiwi",
-    liked: false,
-  },
-  {
-    id: 7,
-    name: "Passion Fruit Pop",
-    brand: "Fresh Vibes",
-    price: 135,
-    image: "/images/products/passion_fruit.webp",
-    borderColor: "border-yellow-500",
-    flavor: "Passion Fruit",
-    liked: false,
-  },
-  {
     id: 8,
     name: "Chocolate Chill",
     brand: "Fresh Vibes",
     price: 135,
-    image: "/images/products/chocolate.webp",
+    image: "/images/products/chocolate.png",
     borderColor: "border-stone-400",
     flavor: "Chocolate",
     liked: false,
@@ -87,12 +17,103 @@ const products: Product[] = [
     name: "Caramel Swirl",
     brand: "Fresh Vibes",
     price: 135,
-    image: "/images/products/caramel.webp",
+    image: "/images/products/caramel.jpeg",
     borderColor: "border-amber-400",
     flavor: "Caramel",
     liked: false,
   },
+  {
+    id: 2,
+    name: "Blueberry Dream",
+    brand: "Fresh Vibes",
+    price: 135,
+    image: "/images/products/blueberry.jpeg",
+    borderColor: "border-blue-400",
+    flavor: "Blueberry",
+    liked: false,
+  },
+  {
+    id: 3,
+    name: "Raspberry Rush",
+    brand: "Fresh Vibes",
+    price: 135,
+    image: "/images/products/raspberry.jpeg",
+    borderColor: "border-pink-400",
+    flavor: "Raspberry",
+    liked: false,
+  },
+  {
+    id: 10,
+    name: "Mixberry Blast",
+    brand: "Fresh Vibes",
+    price: 135,
+    image: "/images/products/mixberry.jpeg",
+    borderColor: "border-purple-400",
+    flavor: "Mixberry",
+    liked: false,
+  },
+  {
+    id: 1,
+    name: "Strawberry Splash",
+    brand: "Fresh Vibes",
+    price: 135,
+    image: "/images/products/strawberry.jpeg",
+    borderColor: "border-red-400",
+    flavor: "Strawberry",
+    liked: false,
+  },
+  {
+    id: 11,
+    name: "Mango Madness",
+    brand: "Fresh Vibes",
+    price: 135,
+    image: "/images/products/mongo.jpeg",
+    borderColor: "border-orange-500",
+    flavor: "Mango",
+    liked: false,
+  },
+  {
+    id: 5,
+    name: "Pineapple Punch",
+    brand: "Fresh Vibes",
+    price: 135,
+    image: "/images/products/pineapple.jpeg",
+    borderColor: "border-yellow-400",
+    flavor: "Pineapple",
+    liked: false,
+  },
+  {
+    id: 4,
+    name: "Peach Breeze",
+    brand: "Fresh Vibes",
+    price: 135,
+    image: "/images/products/peach.jpeg",
+    borderColor: "border-orange-400",
+    flavor: "Peach",
+    liked: false,
+  },
+  {
+    id: 6,
+    name: "Kiwi Kick",
+    brand: "Fresh Vibes",
+    price: 135,
+    image: "/images/products/kiwi.jpeg",
+    borderColor: "border-green-400",
+    flavor: "Kiwi",
+    liked: false,
+  },
+  {
+    id: 7,
+    name: "Passion Fruit Pop",
+    brand: "Fresh Vibes",
+    price: 135,
+    image: "/images/products/passion_fruit.jpeg",
+    borderColor: "border-yellow-500",
+    flavor: "Passion Fruit",
+    liked: false,
+  },
 ];
+
 
 export default function Page() {
   return (
@@ -105,11 +126,11 @@ export default function Page() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Fresh Vibes Drinks
+            Fresh Vibes sauces and toppings
           </h1>
 
           <p className="mt-4 text-blue-100 max-w-2xl mx-auto text-sm sm:text-base">
-            Premium quality beverages for every moment
+            Premium quality syrups for every moment
           </p>
         </div>
 

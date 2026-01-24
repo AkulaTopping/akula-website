@@ -114,7 +114,7 @@ export default function Catalog() {
                         alt={`Page ${currentPage + 1}`}
                         fill
                         className="object-cover"
-                        quality={100}
+                        quality={80}
                        
                       />
                     </div>
