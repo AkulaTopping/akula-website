@@ -41,7 +41,7 @@ export const recipes = [
     id: 3,
     title: "Milkshakes & Smoothies",
     description: "Smooth protein-rich blends",
-    image: "/images/feature/6.png",
+    image: "/images/feature/milkshake.webp",
     color: "from-amber-500 to-orange-600",
   },
   {
