@@ -5,7 +5,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
-const ProfessionalAbout = () => {
+const AboutPage = () => {
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -92,23 +92,12 @@ const ProfessionalAbout = () => {
         {/* RIGHT SIDE */}
         <div
           className="
-    w-full md:w-6/12
-    flex items-center justify-center
-    bg-white
-    h-auto md:h-screen
-    md:sticky md:top-0
-    py-16 md:py-0
-  "
+    w-full md:w-6/12 flex items-center justify-center bg-white h-auto md:h-screen md:sticky md:top-0 py-16 md:py-0"
         >
           <div className="relative w-full h-full px-6 md:px-0">
             <motion.div
               style={{ scale: bottleScale, opacity: bottleOpacity }}
-              className="
-        relative w-full
-        h-[420px] sm:h-[480px]
-        md:h-full
-        z-10
-      "
+              className="relative w-full h-[420px] sm:h-[480px] md:h-full z-10"
             >
               <Image
                 src="/images/aboutimg.png"
@@ -121,14 +110,7 @@ const ProfessionalAbout = () => {
 
             <motion.div
               style={{ height: curtainHeight }}
-              className="
-        absolute top-0 left-0 w-full
-        bg-main
-        z-20
-        flex items-center justify-center
-        overflow-hidden
-        rounded-none md:rounded-xl
-      "
+              className="absolute top-0 left-0 w-full bg-main z-20 flex items-center justify-center overflow-hidden rounded-none md:rounded-xl "
             >
               <motion.h2
                 style={{ opacity: curtainHeight }}
@@ -144,4 +126,4 @@ const ProfessionalAbout = () => {
   );
 };
 
-export default ProfessionalAbout;
+export default AboutPage;
