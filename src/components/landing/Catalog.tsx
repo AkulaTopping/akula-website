@@ -115,7 +115,7 @@ export default function Catalog() {
                         fill
                         className="object-cover"
                         quality={100}
-                        priority
+                       
                       />
                     </div>
                   </motion.div>

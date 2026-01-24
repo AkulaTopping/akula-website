@@ -33,7 +33,7 @@ export const recipes = [
     id: 1,
     title: "Cocktails & Mocktails",
     description: "Sweet fruit mocktails and crème",
-    image: "/images/feature/3.png",
+    image: "/images/feature/Cocktails.webp",
     color: "from-orange-500 to-amber-500",
   },
 
@@ -48,14 +48,14 @@ export const recipes = [
     id: 4,
     title: "Desserts & Ice Cream",
     description: "Delicious sweets tasty tops",
-    image: "/images/feature/5.png",
+    image: "/images/feature/tasty-strawberry.jpg",
     color: "from-rose-500 to-pink-600",
   },
   {
     id: 5,
     title: "Baking & Pastry",
     description: "Tasty treat decorations",
-    image: "/images/feature/2.png",
+    image: "/images/feature/cheesecake.webp",
     color: "from-orange-600 to-rose-600",
   },
 ];

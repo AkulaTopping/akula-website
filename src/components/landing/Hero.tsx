@@ -64,6 +64,7 @@ export default function Hero() {
                 loading="eager"
                 alt="Akula Topping Collection"
                 className="w-full h-auto object-contain"
+                priority
               />
             </div>
           </motion.div>

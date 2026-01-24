@@ -25,7 +25,7 @@ const products: Product[] = [
   {
     id: 3,
     name: "Raspberry Rush",
-    brand: "Fresh Vibes",
+    brand: "Fresh Vibes 120ml",
     price: 135,
     image: "/images/products/raspberry.webp",
     borderColor: "border-pink-400",

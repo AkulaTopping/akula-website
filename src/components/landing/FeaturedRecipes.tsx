@@ -6,32 +6,37 @@ export default function FeaturedRecipes() {
     <section id="recipes" className="py-20 bg-secondary/5">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary">
-            FEATURED RECIPES
+         <h2 className="text-3xl md:text-5xl font-bold text-gray-800">
+            Featured Recipes
           </h2>
+           <p className="text-gray-600 mt-2">see our most popular recipes</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8">
+        {/* Grid instead of flex */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
           {recipes.map((recipe) => (
             <div
               key={recipe.id}
-              className={`group relative rounded-2xl overflow-hidden bg-linear-to-br ${recipe.color} shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}
+              className={`group relative w-[300px] h-[420px] flex flex-col rounded-2xl overflow-hidden bg-linear-to-br ${recipe.color} shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}
             >
-              <div className="relative w-full overflow-hidden">
+              {/* Image */}
+              <div className="relative w-full h-[300px] overflow-hidden">
                 <Image
                   src={recipe.image}
                   alt={recipe.title}
-                  width={300}
-                  height={300}
+                  fill
                   className="object-cover"
+                  sizes="280px"
                 />
               </div>
 
-              <div className="p-4 text-center text-white space-y-1">
+              {/* Content */}
+              <div className="flex-1 pb-3 text-center text-white space-y-1 flex flex-col justify-end">
                 <h3 className="text-sm font-semibold tracking-wide">
                   {recipe.title}
                 </h3>
-                <p className="text-xs opacity-85 leading-snug">
+
+                <p className="text-xs opacity-85 leading-snug line-clamp-2">
                   {recipe.description}
                 </p>
 

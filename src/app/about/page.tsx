@@ -89,7 +89,7 @@ const AboutPage = () => {
           </section>
         </div>
 
-        {/* RIGHT SIDE */}
+       
         <div
           className="
     w-full md:w-6/12 flex items-center justify-center bg-white h-auto md:h-screen md:sticky md:top-0 py-16 md:py-0"

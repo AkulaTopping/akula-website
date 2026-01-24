@@ -50,7 +50,7 @@ export default function ProductShowcase() {
                     alt={active.name}
                     fill
                     className="object-contain"
-                    priority
+                  
                   />
                 </div>
               </motion.div>
