@@ -10,15 +10,23 @@ export default function ProductCard({ product }: { product: Product }) {
     null,
   );
 
-  const orderFromFacebook = () => {
-    setShowIcon("facebook");
-    setTimeout(() => setShowIcon(null), 500);
+ const orderFromFacebook = () => {
+  setShowIcon("facebook");
+  setTimeout(() => setShowIcon(null), 500);
 
-    window.open(
-      `https://m.me/mohamedanwer741?text=I want to order ${product.name}++Brand: ${product.brand}+Price: ${product.price} EGP`,
-      "_blank",
-    );
-  };
+  const message = encodeURIComponent(
+    `I want to order:\n\n` +
+      `Product: ${product.name}\n` +
+      `Brand: ${product.brand}\n` +
+      `Price: ${product.price} EGP\n` +
+      `Image: ${product.image}`
+  );
+
+  window.open(
+    `https://m.me/mohamedanwer741?ref=${message}`,
+    "_blank"
+  );
+};
 
   const orderFromWhatsapp = () => {
     setShowIcon("whatsapp");
@@ -28,7 +36,9 @@ export default function ProductCard({ product }: { product: Product }) {
       `I want to order:\n\n` +
         `Product: ${product.name}\n` +
         `Brand: ${product.brand}\n` +
-        `Price: ${product.price} EGP\n`,
+        `Price: ${product.price} EGP\n`+
+         `Image: ${product.image}`
+
     );
 
     window.open(`https://wa.me/201011286690?text=${message}`, "_blank");
