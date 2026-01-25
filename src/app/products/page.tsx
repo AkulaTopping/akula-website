@@ -126,7 +126,7 @@ export default function Page() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Fresh Vibes sauces and toppings
+            Fresh Vibes sauces 
           </h1>
 
           <p className="mt-4 text-blue-100 max-w-2xl mx-auto text-sm sm:text-base">
