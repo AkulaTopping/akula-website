@@ -15,12 +15,12 @@ export default function Catalog() {
 
   const pages = [
     "/images/catalog/1-Picsart-AiImageEnhancer.jpg",
-    "/images/catalog/2-Picsart-AiImageEnhancer.jpg",
-    "/images/catalog/3-Picsart-AiImageEnhancer.jpg",
-    "/images/catalog/4-Picsart-AiImageEnhancer.jpg",
-    "/images/catalog/5-Picsart-AiImageEnhancer.jpg",
-    "/images/catalog/6-Picsart-AiImageEnhancer.jpg",
-    "/images/catalog/7-Picsart-AiImageEnhancer.jpg",
+    "/images/catalog/catalogue-D (1)_page-0002.jpg",
+    "/images/catalog/catalogue-D (1)_page-0003.jpg",
+    "/images/catalog/catalogue-D (1)_page-0004.jpg",
+    "/images/catalog/catalogue-D (1)_page-0005.jpg",
+    "/images/catalog/catalogue-D (1)_page-0006.jpg",
+    "/images/catalog/catalogue-D (1)_page-0007.jpg",
   ];
 
   const flipDuration = 600;
@@ -88,7 +88,7 @@ export default function Catalog() {
         </div>
 
         <div className="relative max-w-5xl mx-auto">
-          <div className="pt-56">
+          <div className="pt-6">
             <div className="perspective-container flex items-center justify-center">
               <div className="relative w-full max-w-4xl">
                 <AnimatePresence mode="wait">
@@ -114,7 +114,7 @@ export default function Catalog() {
                         alt={`Page ${currentPage + 1}`}
                         fill
                         className="object-cover"
-                        quality={100}
+                        quality={80}
                        
                       />
                     </div>

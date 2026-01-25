@@ -5,9 +5,38 @@ import Image from "next/image";
 import { ShoppingCart, Heart } from "lucide-react";
 import { Product } from "@/src/utils/types";
 import ProductCard from "@/src/components/ProductCard";
+import { FaFacebookMessenger, FaWhatsapp } from "react-icons/fa";
 
 export default function ProductsClient({ products }: { products: Product[] }) {
   const [mainProduct, setMainProduct] = useState(products[0]);
+
+
+  const orderFromFacebook = () => {
+    const message = encodeURIComponent(
+      `I want to order:\n\n` +
+        `Product: ${mainProduct.name}\n` +
+        `Brand: ${mainProduct.brand}\n` +
+        `Price: ${mainProduct.price} EGP\n` +
+        `Image: ${mainProduct.image}`
+    );
+
+    window.open(
+      `https://m.me/mohamedanwer741?ref=${message}`,
+      "_blank"
+    );
+  };
+
+  const orderFromWhatsapp = () => {
+    const message = encodeURIComponent(
+      `I want to order:\n\n` +
+        `Product: ${mainProduct.name}\n` +
+        `Brand: ${mainProduct.brand}\n` +
+        `Price: ${mainProduct.price} EGP\n` +
+        `Image: ${mainProduct.image}`
+    );
+
+    window.open(`https://wa.me/201011286690?text=${message}`, "_blank");
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -23,6 +52,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
               fill
               className="object-contain"
               sizes="500px"
+              priority
             />
           </div>
         </div>
@@ -46,15 +76,21 @@ export default function ProductsClient({ products }: { products: Product[] }) {
           </p>
 
           <div className="flex gap-4">
-            <button className="flex-1 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center gap-2">
-              <ShoppingCart className="w-5 h-5" />
-              Buy Now
-            </button>
+            <button
+                       onClick={orderFromWhatsapp}
+                       className="flex-1 text-xs h-9 px-3 rounded-md bg-green-600 hover:bg-green-700 text-white transition flex items-center justify-center gap-2"
+                     >
+                       <FaWhatsapp className="w-5 h-6" />
+                       Order on WhatsApp
+                     </button>
 
-            <button className="flex-1 px-6 py-3 border border-gray-300 hover:bg-gray-50 text-gray-900 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2">
-              <Heart className="w-5 h-5" />
-              Save
-            </button>
+           <button
+                      onClick={orderFromFacebook}
+                      className="flex-1 text-xs h-9 px-3 rounded-md bg-blue-600 hover:bg-blue-700 text-white transition flex items-center justify-center gap-2"
+                    >
+                      <FaFacebookMessenger className="w-5 h-6" />
+                      Order on Facebook
+                    </button>
           </div>
         </div>
       </div>
