@@ -6,20 +6,17 @@ import { FaFacebookMessenger, FaWhatsapp } from "react-icons/fa";
 import { Product } from "@/src/utils/types";
 
 export default function ProductCard({ product }: { product: Product }) {
-  const [showIcon, setShowIcon] = useState<"facebook" | "whatsapp" | null>(null);
-
-
-
-//   your real Facebook page username
-//  WhatsApp number with country code, no + sign
+  const [showIcon, setShowIcon] = useState<"facebook" | "whatsapp" | null>(
+    null,
+  );
 
   const orderFromFacebook = () => {
     setShowIcon("facebook");
     setTimeout(() => setShowIcon(null), 500);
 
     window.open(
-      `https://m.me/mohamedanwer741?text=I want to order ${product.name}`,
-      "_blank"
+      `https://m.me/mohamedanwer741?text=I want to order ${product.name}++Brand: ${product.brand}+Price: ${product.price} EGP`,
+      "_blank",
     );
   };
 
@@ -27,10 +24,14 @@ export default function ProductCard({ product }: { product: Product }) {
     setShowIcon("whatsapp");
     setTimeout(() => setShowIcon(null), 500);
 
-    window.open(
-      `https://wa.me/201011286690?text=I want to order ${product.name}`,
-      "_blank"
+    const message = encodeURIComponent(
+      `I want to order:\n\n` +
+        `Product: ${product.name}\n` +
+        `Brand: ${product.brand}\n` +
+        `Price: ${product.price} EGP\n`,
     );
+
+    window.open(`https://wa.me/201011286690?text=${message}`, "_blank");
   };
 
   return (
@@ -70,7 +71,6 @@ export default function ProductCard({ product }: { product: Product }) {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-2">
-         
           <button
             onClick={orderFromFacebook}
             className="flex-1 text-xs h-9 px-3 rounded-md bg-blue-600 hover:bg-blue-700 text-white transition flex items-center justify-center gap-2"
