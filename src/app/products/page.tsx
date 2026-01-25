@@ -7,7 +7,7 @@ const products: Product[] = [
     name: "Strawberry Splash",
     brand: "Fresh Vibes",
     price: 135,
-    image: "/images/products/strawberry.webp",
+    image: "/images/test.jpeg",
     borderColor: "border-red-400",
     flavor: "Strawberry",
     liked: false,

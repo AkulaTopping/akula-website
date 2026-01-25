@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-[calc(100vh-64px)] min-h-[700px] flex items-center bg-[#256799] overflow-hidden transition-all">
+    <section className="relative w-full min-h-[calc(100svh-64px)] flex items-center bg-[#256799] overflow-hidden transition-all">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
         <h2 className="text-[20vw] font-black text-white/3 leading-none">
           AKULA
@@ -31,7 +31,7 @@ export default function Hero() {
               drinks. Enhance every moment with authentic flavors.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 p-4 justify-center lg:justify-start">
               <button className="bg-secondary text-white px-10 py-4 rounded-full font-bold hover:shadow-[0_0_20px_rgba(245,158,37,0.5)] transition-all text-lg group overflow-hidden relative">
                 <span className="relative z-10">Explore Flavors</span>
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform" />
@@ -58,7 +58,7 @@ export default function Hero() {
 
             <div className="relative z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.4)]">
               <Image
-                src="/images/heroimg.webp"
+                src="/images/HeroImage.webp"
                 width={700}
                 height={700}
                 loading="eager"

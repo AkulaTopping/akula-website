@@ -6,14 +6,14 @@ export default function FeaturedRecipes() {
     <section id="recipes" className="py-20 bg-secondary/5">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-         <h2 className="text-3xl md:text-5xl font-bold text-gray-800">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-800">
             Featured Recipes
           </h2>
-           <p className="text-gray-600 mt-2">see our most popular recipes</p>
+          <p className="text-gray-600 mt-2">see our most popular recipes</p>
         </div>
 
         {/* Grid instead of flex */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center overflow-hidden">
           {recipes.map((recipe) => (
             <div
               key={recipe.id}

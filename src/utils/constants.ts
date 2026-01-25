@@ -1,31 +1,38 @@
 export const products = [
   {
     id: 1,
-    name: "Chocolate Sauce",
-    weight: "120",
+    name: "Chocolate",
+    weight: "1250",
     price: "135",
     image: "/images/bestSelling/chocolate-sauce.webp",
   },
   {
     id: 2,
-    name: "Strawberry Sauce",
-    weight: "120",
-    price: "135",
-    image: "/images/bestSelling/strawberry-sauce.webp",
-  },
-  {
-    id: 3,
-    name: "Caramel Sauce",
-    weight: "120",
+    name: "Caramel",
+    weight: "1250",
     price: "135",
     image: "/images/bestSelling/caramel.webp",
   },
   {
-    id: 4,
-    name: "Raspberry Sauce",
-    weight: "120",
+    id: 3,
+    name: "BlueBerry",
+    weight: "1250",
     price: "135",
-    image: "/images/bestSelling/raspberry-sauce.webp",
+    image: "/images/bestSelling/blue-.webp",
+  },
+  {
+    id: 4,
+    name: "Strawberry",
+    weight: "1250",
+    price: "135",
+    image: "/images/bestSelling/strawberry-sauce.webp",
+  },
+  {
+    id: 5,
+    name: "Passion Fruit",
+    weight: "1250",
+    price: "135",
+    image: "/images/bestSelling/passionFruit-sauce.webp",
   },
 ];
 export const recipes = [

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import React, { useRef } from "react";
@@ -88,7 +89,6 @@ const AboutPage = () => {
           </section>
         </div>
 
-       
         <div
           className="
     w-full md:w-6/12 flex items-center justify-center bg-white h-auto md:h-screen md:sticky md:top-0 py-16 md:py-0"
