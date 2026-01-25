@@ -10,23 +10,19 @@ export default function ProductCard({ product }: { product: Product }) {
     null,
   );
 
- const orderFromFacebook = () => {
-  setShowIcon("facebook");
-  setTimeout(() => setShowIcon(null), 500);
+  const orderFromFacebook = () => {
+    setShowIcon("facebook");
+    setTimeout(() => setShowIcon(null), 500);
 
-  const message = encodeURIComponent(
-    `I want to order:\n\n` +
-      `Product: ${product.name}\n` +
-      `Brand: ${product.brand}\n` +
-      `Price: ${product.price} EGP\n` +
-      `Image: ${product.image}`
-  );
+    const message = encodeURIComponent(
+      `I want to order:\n\n` +
+        `Product: ${product.name}\n` +
+        `Brand: ${product.brand}\n` +
+        `Price: ${product.price} EGP\n`,
+    );
 
-  window.open(
-    `https://m.me/mohamedanwer741?ref=${message}`,
-    "_blank"
-  );
-};
+    window.open(`https://m.me/mohamedanwer741?ref=${message}`, "_blank");
+  };
 
   const orderFromWhatsapp = () => {
     setShowIcon("whatsapp");
@@ -36,9 +32,7 @@ export default function ProductCard({ product }: { product: Product }) {
       `I want to order:\n\n` +
         `Product: ${product.name}\n` +
         `Brand: ${product.brand}\n` +
-        `Price: ${product.price} EGP\n`+
-         `Image: ${product.image}`
-
+        `Price: ${product.price} EGP\n`,
     );
 
     window.open(`https://wa.me/201011286690?text=${message}`, "_blank");
