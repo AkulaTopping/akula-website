@@ -2,22 +2,35 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ShoppingCart, Heart } from "lucide-react";
+import { FaFacebookMessenger, FaWhatsapp } from "react-icons/fa";
 import { Product } from "@/src/utils/types";
 
 export default function ProductCard({ product }: { product: Product }) {
-  const [isLiked, setIsLiked] = useState(product.liked);
-  const [showIcon, setShowIcon] = useState<"heart" | "cart" | null>(null);
+  const [showIcon, setShowIcon] = useState<"facebook" | "whatsapp" | null>(null);
 
-  const toggleHeart = () => {
-    setShowIcon("heart");
-    setIsLiked(!isLiked);
+
+
+//   your real Facebook page username
+//  WhatsApp number with country code, no + sign
+
+  const orderFromFacebook = () => {
+    setShowIcon("facebook");
     setTimeout(() => setShowIcon(null), 500);
+
+    window.open(
+      `https://m.me/mohamedanwer741?text=I want to order ${product.name}`,
+      "_blank"
+    );
   };
 
-  const toggleCart = () => {
-    setShowIcon("cart");
+  const orderFromWhatsapp = () => {
+    setShowIcon("whatsapp");
     setTimeout(() => setShowIcon(null), 500);
+
+    window.open(
+      `https://wa.me/201011286690?text=I want to order ${product.name}`,
+      "_blank"
+    );
   };
 
   return (
@@ -37,13 +50,12 @@ export default function ProductCard({ product }: { product: Product }) {
         {showIcon && (
           <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
             <span className="text-4xl animate-ping">
-              {showIcon === "heart" ? "❤️" : "🛒"}
+              {showIcon === "facebook" ? "💬" : "📱"}
             </span>
           </div>
         )}
       </div>
 
-      {/* DETAILS */}
       <div className="relative z-10 p-4 sm:p-5 bg-white">
         <h3 className="font-semibold text-gray-800 text-xs sm:text-sm uppercase tracking-wide line-clamp-2">
           {product.name}
@@ -58,24 +70,22 @@ export default function ProductCard({ product }: { product: Product }) {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-2">
+         
           <button
-            onClick={toggleHeart}
-            className="flex-1 text-xs h-9 px-3 rounded-md border border-gray-300 hover:bg-gray-50 transition flex items-center justify-center gap-2"
+            onClick={orderFromFacebook}
+            className="flex-1 text-xs h-9 px-3 rounded-md bg-blue-600 hover:bg-blue-700 text-white transition flex items-center justify-center gap-2"
           >
-            <Heart
-              className={`w-4 h-4 ${
-                isLiked ? "fill-red-500 text-red-500" : ""
-              }`}
-            />
-            {isLiked ? "Liked" : "Like"}
+            <FaFacebookMessenger className="w-5 h-6" />
+            Order on Facebook
           </button>
 
+          {/* WHATSAPP */}
           <button
-            onClick={toggleCart}
-            className="flex-1 text-xs h-9 px-3 rounded-md bg-purple-600 hover:bg-purple-700 text-white transition flex items-center justify-center gap-2"
+            onClick={orderFromWhatsapp}
+            className="flex-1 text-xs h-9 px-3 rounded-md bg-green-600 hover:bg-green-700 text-white transition flex items-center justify-center gap-2"
           >
-            <ShoppingCart className="w-4 h-4" />
-            Add
+            <FaWhatsapp className="w-5 h-6" />
+            Order on WhatsApp
           </button>
         </div>
       </div>

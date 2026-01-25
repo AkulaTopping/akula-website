@@ -23,6 +23,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
               fill
               className="object-contain"
               sizes="500px"
+              priority
             />
           </div>
         </div>
