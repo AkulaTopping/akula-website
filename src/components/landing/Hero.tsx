@@ -58,7 +58,7 @@ export default function Hero() {
 
             <div className="relative z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.4)]">
               <Image
-                src="/images/HeroImage.webp"
+                src="/images/hero.webp"
                 width={700}
                 height={700}
                 loading="eager"
