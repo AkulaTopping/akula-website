@@ -1,4 +1,4 @@
- export interface Product {
+export interface Product {
   id: number;
   name: string;
   brand: string;
@@ -6,5 +6,4 @@
   image: string;
   borderColor: string;
   flavor: string;
-  liked: boolean;
 }

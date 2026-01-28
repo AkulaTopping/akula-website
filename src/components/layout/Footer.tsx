@@ -1,75 +1,93 @@
-import Link from 'next/link'
+import Image from "next/image";
+import Link from "next/link";
+import {
+  FaFacebook,
+  FaWhatsapp,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-black text-white py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          {/* Brand */}
-          <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-primary">Akula Topping</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Premium natural toppings and syrups for every occasion.
+    <footer className="bg-[#0a0a0a] text-white p-10 border-t border-gray-900">
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-10">
+          {/* 1. Brand Identity */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-3">
+              <Image
+                src="/images/akula-logo.webp"
+                alt="Akula Topping Logo"
+                width={120}
+                height={50}
+                className=" object-contain"
+              />
+            </div>
+            <p className="text-gray-500 text-sm leading-relaxed max-w-xs">
+              Crafting premium natural toppings and artisanal syrups. Defined by
+              nature, refined by quality.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="text-gray-400 hover:text-primary transition">
-                Facebook
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary transition">
-                Instagram
-              </a>
+            <div className="flex gap-5">
+              <Link
+                href={`https://m.me/${process.env.NEXT_Public_FACEBOOK_ID}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500  hover:text-[#155dfc] transition-all duration-300 transform hover:-translate-y-1"
+                aria-label="Facebook"
+              >
+                <FaFacebook className="w-5 h-5" />
+              </Link>
+              <Link
+                href={`https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-[#00a63d] transition-all duration-300 transform hover:-translate-y-1"
+                aria-label="WhatsApp"
+              >
+                <FaWhatsapp className="w-5 h-5" />
+              </Link>
             </div>
           </div>
 
-          {/* Products */}
+          {/* 2. Exploration */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Products</h4>
-            <ul className="space-y-2 text-gray-400 text-sm">
+            <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-6">
+              Navigation
+            </h4>
+            <ul className="space-y-4 text-gray-500 text-sm">
               <li>
-                <Link href="#" className="hover:text-primary transition">
-                  All Flavors
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition">
-                  Best Sellers
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition">
-                  New Arrivals
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition">
-                  Bulk Orders
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h4 className="text-lg font-bold mb-4">Company</h4>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li>
-                <Link href="#" className="hover:text-primary transition">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition">
+                <Link
+                  href="/about"
+                  className="hover:text-white transition-colors duration-200"
+                >
                   Our Story
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary transition">
-                  Blog
+                <Link
+                  href="/products"
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  Product Collection
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-primary transition">
-                  Careers
+                <Link
+                  href="#"
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  The Journal (Blog)
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#"
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  Partnerships
                 </Link>
               </li>
             </ul>
@@ -77,40 +95,67 @@ export default function Footer() {
 
           {/* Support */}
           <div>
-            <h4 className="text-lg font-bold mb-4">Support</h4>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li>
-                <Link href="#" className="hover:text-primary transition">
-                  Contact Us
+            <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-6">
+              Support
+            </h4>
+            <ul className="space-y-4 text-gray-500 text-sm">
+              <li className="flex items-start gap-3">
+                <FaPhoneAlt className="w-3 h-3 mt-1 text-secondary" />
+                <Link
+                  href={`tel:+${process.env.NEXT_PUBLIC_CONTACT_PHONE}`}
+                  className="hover:text-white transition-colors"
+                >
+                  +20 105 067 7740
                 </Link>
               </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition">
-                  Shipping Info
+              <li className="flex items-start gap-3">
+                <FaEnvelope className="w-3 h-3 mt-1 text-secondary" />
+                <Link
+                  href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {process.env.NEXT_PUBLIC_CONTACT_EMAIL}
                 </Link>
               </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition">
-                  FAQs
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-primary transition">
-                  Privacy Policy
-                </Link>
+              <li className="flex items-start gap-3">
+                <FaMapMarkerAlt className="w-3 h-3 mt-1 text-secondary" />
+                <span>
+                  Third Industrial Zone <br />
+                  Cairo–Alexandria Ag. Road <br />
+                  Banha, Egypt
+                </span>
               </li>
             </ul>
           </div>
+
+          {/* 4. Interactive QR */}
+          <div>
+            <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-6">
+              Instant Access
+            </h4>
+            <div className="bg-white p-2 rounded-xl inline-block group cursor-pointer overflow-hidden">
+              <div className="w-24 h-24 bg-gray-200 flex items-center justify-center text-[10px] text-gray-400 text-center p-2 uppercase">
+                QR Code Placeholder
+              </div>
+            </div>
+            <p className="text-[10px] text-gray-600 mt-4 uppercase tracking-widest">
+              Scan for catalog
+            </p>
+          </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-gray-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
-            <p>&copy; 2024 Akula Topping. All rights reserved.</p>
-            <p>100% Natural • Premium Quality • Authentic Taste</p>
+        {/* Legal & Footer Bottom */}
+        <div className="border-t border-gray-900 pt-2 mt-2">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] uppercase tracking-widest font-medium text-gray-600">
+            <p>&copy; {currentYear} Akula Topping. All Rights Reserved.</p>
+            <div className="flex gap-8">
+              <span className="text-gray-400">100% Natural</span>
+              <span className="text-gray-400">Premium Quality</span>
+              <span className="text-gray-400">Authentic Taste</span>
+            </div>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

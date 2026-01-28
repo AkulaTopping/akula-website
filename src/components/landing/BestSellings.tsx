@@ -1,12 +1,12 @@
 "use client";
-
-import { products } from "@/src/utils/constants";
+import { sellingProducts } from "@/src/utils/constants";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function ProductShowcase() {
-  const [active, setActive] = React.useState(products[0]);
+  const [active, setActive] = React.useState(sellingProducts[0]);
 
   return (
     <div className="w-full flex flex-col bg-secondary p-6 min-h-[calc(100svh-64px)]">
@@ -20,7 +20,7 @@ export default function ProductShowcase() {
       <div className="grow grid grid-cols-1 lg:grid-cols-3 items-center md:gap-10 lg:gap-4">
         {/* LEFT TEXT */}
         <div className="order-2 lg:order-1 text-center lg:text-left z-10">
-          <span className="uppercase tracking-[0.2em] text-xs font-bold text-[#e65b3c]">
+          <span className="uppercase tracking-[0.2em] text-xs font-bold text-main">
             Premium Sauce
           </span>
           <h1 className="text-3xl md:text-6xl font-black text-gray-900 mt-2 mb-4 leading-none">
@@ -33,7 +33,7 @@ export default function ProductShowcase() {
         </div>
 
         {/* CENTER PRODUCT */}
-        <div className="order-1 lg:order-2 relative h-[350px] md:h-[250px] lg:h-full flex items-center justify-center">
+        <div className="order-1 lg:order-2 relative h-87.5 md:h-62.5 lg:h-full flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={active.id}
@@ -79,9 +79,11 @@ export default function ProductShowcase() {
               <span className="text-2xl font-black text-gray-900">
                 {active.price} <small className="text-xs">EGP</small>
               </span>
-              <button className="bg-black text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-orange-600 transition-colors">
-                View All
-              </button>
+              <Link href="/products">
+                <button className="bg-black text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-orange-600 transition-colors">
+                  View All
+                </button>
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -90,7 +92,7 @@ export default function ProductShowcase() {
       {/* BOTTOM SELECTOR */}
       <div className="py-4 flex justify-center mt-auto">
         <div className="flex gap-2 p-2 bg-white/50 backdrop-blur-xl rounded-4xl border border-white/50 shadow-lg">
-          {products.map((p) => (
+          {sellingProducts.map((p) => (
             <button
               key={p.id}
               onClick={() => setActive(p)}

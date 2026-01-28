@@ -17,10 +17,10 @@ export default function FeaturedRecipes() {
           {recipes.map((recipe) => (
             <div
               key={recipe.id}
-              className={`group relative w-[300px] h-[420px] flex flex-col rounded-2xl overflow-hidden bg-linear-to-br ${recipe.color} shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}
+              className={`group relative w-75 h-105 flex flex-col rounded-2xl overflow-hidden bg-linear-to-br ${recipe.color} shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}
             >
               {/* Image */}
-              <div className="relative w-full h-[300px] overflow-hidden">
+              <div className="relative w-full h-75 overflow-hidden">
                 <Image
                   src={recipe.image}
                   alt={recipe.title}
@@ -31,7 +31,7 @@ export default function FeaturedRecipes() {
               </div>
 
               {/* Content */}
-              <div className="flex-1 pb-3 text-center text-white space-y-1 flex flex-col justify-end">
+              <div className="flex-1 pb-3 text-center text-white space-y-1 flex flex-col justify-center">
                 <h3 className="text-sm font-semibold tracking-wide">
                   {recipe.title}
                 </h3>
@@ -39,10 +39,6 @@ export default function FeaturedRecipes() {
                 <p className="text-xs opacity-85 leading-snug line-clamp-2">
                   {recipe.description}
                 </p>
-
-                <button className="mt-3 text-xs font-semibold underline underline-offset-4 opacity-80 hover:opacity-100 transition">
-                  Read more
-                </button>
               </div>
             </div>
           ))}

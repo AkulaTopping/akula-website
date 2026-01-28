@@ -10,9 +10,9 @@ export default function NotFound() {
 
       <Link
         href="/"
-        className="px-6 py-3 rounded-md bg-primary text-primary-foreground hover:opacity-90 transition"
+        className="px-8 py-4 rounded-full bg-black text-white font-bold hover:bg-primary transition-all active:scale-95 shadow-lg"
       >
-        Go back home
+        Return to Akula Topping
       </Link>
     </main>
   );

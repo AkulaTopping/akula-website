@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import React, { useRef } from "react";
@@ -18,102 +17,146 @@ const AboutPage = () => {
     damping: 30,
   });
 
-  const curtainHeight = useTransform(smoothProgress, [0, 0.7], ["100%", "0%"]);
-  const bottleScale = useTransform(smoothProgress, [0, 0.5], [0.95, 1]);
-  const bottleOpacity = useTransform(
-    smoothProgress,
-    [0, 0.2, 0.5],
-    [0, 0.5, 1],
-  );
+  const curtainHeight = useTransform(smoothProgress, [0, 0.6], ["100%", "0%"]);
 
   return (
-    <main ref={containerRef} className="bg-[#fcfcfc] text-[#1a1a1a]">
-      <div className="flex flex-col md:flex-row">
-        {/* LEFT SIDE */}
-        <div className="w-full md:w-6/12 p-8 md:p-16 lg:p-24 space-y-16 lg:space-y-24">
-          <section>
-            <motion.span
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              className="text-secondary font-semibold tracking-widest uppercase mb-4 block text-xs"
-            >
-              since 2020
-            </motion.span>
+    <main
+      ref={containerRef}
+      className="bg-[#fcfcfc] text-[#1a1a1a] selection:bg-secondary/20"
+    >
+      <div className="flex flex-col xl:flex-row min-h-screen">
+        <div className="w-full xl:w-6/12 p-6 sm:p-12 lg:p-20 xl:p-24 flex justify-center items-center">
+          <div className="max-w-2xl w-full space-y-20 lg:space-y-32">
+            <section className="pt-10">
+              <motion.span
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="text-secondary font-bold tracking-[0.3em] uppercase text-[10px] block mb-6"
+              >
+                Est. 2023 — The Art of Purity
+              </motion.span>
 
-            <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-8">
-              The Purest Taste <br /> of Nature.
-            </h1>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-8">
+                Nature&apos;s Finest, <br />
+                <span className="text-gray-400 font-light italic">Taste</span>
+              </h1>
 
-            <p className="text-lg lg:text-xl text-gray-500 max-w-md leading-relaxed">
-              We believe the most exquisite flavors are already written in the
-              soil. Our journey is about bringing that authentic taste of nature
-              to your table through a premium sauce defined by quality, clarity,
-              and respect for the ingredient.
-            </p>
-          </section>
+              <p className="text-lg lg:text-xl text-gray-500 leading-relaxed font-light">
+                We believe that the most exquisite flavors are not
+                manufactured—they are harvested. Our mission is to preserve that
+                authenticity and bring it directly to your table through premium
+                sauces defined by uncompromised quality, clarity, and respect
+                for every ingredient.
+              </p>
+            </section>
 
-          <section>
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">Our Growth</h2>
+            {/* THE GROWTH STORY */}
+            <section className="relative">
+              <div className="absolute -left-6 top-0 bottom-0 w-px bg-gray-100 hidden sm:block" />
+              <h2 className="text-2xl lg:text-3xl font-bold mb-8">
+                Our Evolution
+              </h2>
 
-            <p className="text-base lg:text-lg text-gray-600 mb-10 max-w-md leading-relaxed">
-              Born from a love for authentic flavor, our journey has been
-              defined by a commitment to the perfect pour. Our signature blends
-              have become the secret ingredient for the region's finest cafes,
-              elevating every glass and scoop they touch.
-            </p>
-
-            <div className="grid grid-cols-1 gap-10 border-l-2 border-secondary pl-8">
-              <div>
-                <h4 className="text-5xl font-bold tracking-tighter">100%</h4>
-                <p className="text-gray-400 uppercase tracking-[0.2em] text-[10px] mt-1">
-                  Natural Origins
+              <div className="space-y-6 text-gray-600 text-base lg:text-lg leading-relaxed font-light">
+                <p>
+                  What began as a specialized pursuit of artisanal chocolate and
+                  caramel has evolved into a regional benchmark for excellence.
+                  Our early success was built on a simple promise:{" "}
+                  <span className="text-black font-medium">
+                    Seamless Perfection.
+                  </span>
+                </p>
+                <p>
+                  By 2025, we scaled our vision,we introduced a diverse line of
+                  premium sauces crafted from carefully selected natural fruits,
+                  delivering rich and genuine flavors.
+                </p>
+                <p>
+                  Today, our network bridges governorates, connecting elite
+                  distributors with a shared passion for setting new industry
+                  standards through innovation and long-term integrity.
                 </p>
               </div>
 
-              <div>
-                <h4 className="text-5xl font-bold tracking-tighter">55</h4>
-                <p className="text-gray-400 uppercase tracking-[0.2em] text-[10px] mt-1">
-                  Elite Distributors
-                </p>
+              {/*STATS */}
+              <div className="grid grid-cols-2 gap-12 pt-12">
+                <div className="group">
+                  <h4 className="text-5xl lg:text-6xl font-black tracking-tighter group-hover:text-secondary transition-colors">
+                    100%
+                  </h4>
+                  <div className="h-1 w-8 bg-secondary mb-3" />
+                  <p className="text-gray-400 uppercase tracking-widest text-[10px] font-bold">
+                    Raw Natural Origins
+                  </p>
+                </div>
+
+                <div className="group">
+                  <h4 className="text-5xl lg:text-6xl font-black tracking-tighter group-hover:text-secondary transition-colors">
+                    55+
+                  </h4>
+                  <div className="h-1 w-8 bg-secondary mb-3" />
+                  <p className="text-gray-400 uppercase tracking-widest text-[10px] font-bold">
+                    Elite Strategic Partners
+                  </p>
+                </div>
               </div>
-            </div>
-          </section>
 
-          <section className="pb-20">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">The Essence</h2>
+              {/* DISTRIBUTION MAP */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                className="relative w-full aspect-square rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-2xl mt-16 p-4"
+              >
+                <Image
+                  src="/images/map.webp"
+                  alt="Distribution Map"
+                  fill
+                  className="object-contain"
+                />
+              </motion.div>
+            </section>
 
-            <p className="text-lg lg:text-xl text-gray-600 italic border-l-4 border-gray-100 pl-6 leading-relaxed">
-              We don't just sell sauce; we deliver the essential element for
-              every drink and dessert masterpiece.
-            </p>
-          </section>
+            {/* THE QUOTE */}
+            <section className="pb-16 lg:pb-32">
+              <div className="max-w-md">
+                <h2 className="text-sm uppercase tracking-widest font-black text-black mb-6">
+                  The Essence
+                </h2>
+                <blockquote className="text-2xl lg:text-3xl text-gray-800 font-serif italic leading-snug">
+                  We don&apos;t just supply ingredients; we provide the{" "}
+                  <span className="text-secondary">elemental soul</span> for
+                  every drink and dessert masterpiece.
+                </blockquote>
+              </div>
+            </section>
+          </div>
         </div>
 
-        <div
-          className="
-    w-full md:w-6/12 flex items-center justify-center bg-white h-auto md:h-screen md:sticky md:top-0 py-16 md:py-0"
-        >
-          <div className="relative w-full h-full px-6 md:px-0">
+        <div className="w-full xl:w-6/12 bg-white xl:sticky xl:top-0 h-[60vh] sm:h-[80vh] xl:h-screen overflow-hidden flex items-center justify-center">
+          <div className="relative w-full h-full p-6 sm:p-12 xl:p-0">
             <motion.div
-              style={{ scale: bottleScale, opacity: bottleOpacity }}
-              className="relative w-full h-[420px] sm:h-[480px] md:h-full z-10"
+              className="relative h-full w-full"
+              initial={{ scale: 1.1, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.5 }}
             >
+              <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent z-10" />
               <Image
                 src="/images/aboutimg.webp"
-                alt="Premium Quality Display"
+                alt="Premium Product Showcase"
                 fill
-                className="object-contain rounded-none md:rounded-xl shadow-2xl"
+                className="object-cover"
                 priority
               />
             </motion.div>
 
             <motion.div
               style={{ height: curtainHeight }}
-              className="absolute top-0 left-0 w-full bg-main z-20 flex items-center justify-center overflow-hidden rounded-none md:rounded-xl "
+              className="hidden xl:flex absolute top-0 left-0 w-full bg-[#111] z-20 items-center justify-center overflow-hidden"
             >
               <motion.h2
                 style={{ opacity: curtainHeight }}
-                className="text-white text-xl md:text-2xl font-light tracking-[1.2em] uppercase"
+                className="text-white text-3xl font-extralight tracking-[1.5em] uppercase pl-[1.5em]"
               >
                 Discover
               </motion.h2>

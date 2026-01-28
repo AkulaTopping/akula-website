@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ShoppingCart, Heart } from "lucide-react";
 import { Product } from "@/src/utils/types";
 import ProductCard from "@/src/components/ProductCard";
 import { FaFacebookMessenger, FaWhatsapp } from "react-icons/fa";
@@ -10,39 +9,23 @@ import { FaFacebookMessenger, FaWhatsapp } from "react-icons/fa";
 export default function ProductsClient({ products }: { products: Product[] }) {
   const [mainProduct, setMainProduct] = useState(products[0]);
 
-
-  const orderFromFacebook = () => {
+  const handleOrder = (product: Product, social: "whatsapp" | "facebook") => {
     const message = encodeURIComponent(
       `I want to order:\n\n` +
-        `Product: ${mainProduct.name}\n` +
-        `Brand: ${mainProduct.brand}\n` +
-        `Price: ${mainProduct.price} EGP\n` +
-        `Image: ${mainProduct.image}`
+        `Product: ${product.name}\n` +
+        `Brand: ${product.brand}\n` +
+        `Price: ${product.price} EGP\n`,
     );
-
-    window.open(
-      `https://m.me/mohamedanwer741?ref=${message}`,
-      "_blank"
-    );
+    const url =
+      social === "facebook"
+        ? `https://m.me/${process.env.NEXT_PUBLIC_FACEBOOK_ID}?ref=${message}`
+        : `https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}?text=${message}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
-
-  const orderFromWhatsapp = () => {
-    const message = encodeURIComponent(
-      `I want to order:\n\n` +
-        `Product: ${mainProduct.name}\n` +
-        `Brand: ${mainProduct.brand}\n` +
-        `Price: ${mainProduct.price} EGP\n` +
-        `Image: ${mainProduct.image}`
-    );
-
-    window.open(`https://wa.me/201011286690?text=${message}`, "_blank");
-  };
-  
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        {/* HERO IMAGE */}
         <div
           className={`rounded-xl border-2 ${mainProduct.borderColor} h-96 flex items-center justify-center`}
         >
@@ -78,20 +61,20 @@ export default function ProductsClient({ products }: { products: Product[] }) {
 
           <div className="flex gap-4">
             <button
-                       onClick={orderFromWhatsapp}
-                       className="flex-1 text-xs h-9 px-3 rounded-md bg-green-600 hover:bg-green-700 text-white transition flex items-center justify-center gap-2"
-                     >
-                       <FaWhatsapp className="w-5 h-6" />
-                       Order on WhatsApp
-                     </button>
+              onClick={() => handleOrder(mainProduct, "whatsapp")}
+              className="flex-1 text-xs h-9 px-3 rounded-md bg-green-600 hover:bg-green-700 text-white transition flex items-center justify-center gap-2"
+            >
+              <FaWhatsapp className="w-5 h-6" />
+              Order on WhatsApp
+            </button>
 
-           <button
-                      onClick={orderFromFacebook}
-                      className="flex-1 text-xs h-9 px-3 rounded-md bg-blue-600 hover:bg-blue-700 text-white transition flex items-center justify-center gap-2"
-                    >
-                      <FaFacebookMessenger className="w-5 h-6" />
-                      Order on Facebook
-                    </button>
+            <button
+              onClick={() => handleOrder(mainProduct, "facebook")}
+              className="flex-1 text-xs h-9 px-3 rounded-md bg-blue-600 hover:bg-blue-700 text-white transition flex items-center justify-center gap-2"
+            >
+              <FaFacebookMessenger className="w-5 h-6" />
+              Order on Facebook
+            </button>
           </div>
         </div>
       </div>
@@ -104,13 +87,12 @@ export default function ProductsClient({ products }: { products: Product[] }) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
-            <div
+            <ProductCard
               key={product.id}
-              onClick={() => setMainProduct(product)}
-              className="cursor-pointer"
-            >
-              <ProductCard product={product} />
-            </div>
+              product={product}
+              onOrder={(social) => handleOrder(product, social)}
+              onSelect={() => setMainProduct(product)}
+            />
           ))}
         </div>
       </div>

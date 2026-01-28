@@ -1,10 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-[calc(100svh-64px)] flex items-center bg-[#256799] overflow-hidden transition-all">
+    <section className="relative w-full min-h-[calc(100svh-64px)] flex items-center bg-main overflow-hidden transition-all">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none">
         <h2 className="text-[20vw] font-black text-white/3 leading-none">
           AKULA
@@ -32,10 +33,12 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 p-4 justify-center lg:justify-start">
-              <button className="bg-secondary text-white px-10 py-4 rounded-full font-bold hover:shadow-[0_0_20px_rgba(245,158,37,0.5)] transition-all text-lg group overflow-hidden relative">
-                <span className="relative z-10">Explore Flavors</span>
-                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform" />
-              </button>
+              <Link href="/products">
+                <button className="bg-secondary text-white px-10 py-4 rounded-full font-bold hover:shadow-[0_0_20px_rgba(245,158,37,0.5)] transition-all text-lg group overflow-hidden relative">
+                  <span className="relative z-10">Explore Flavors</span>
+                  <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform" />
+                </button>
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -47,8 +50,8 @@ export default function Hero() {
             whileInView={{ opacity: 1, scale: 1 }}
             className="relative w-full max-w-xl"
           >
-            <div className="absolute -top-4 -right-4 z-20 animate-bounce-slow hidden md:block">
-              <div className="bg-white text-[#256799] px-6 py-3 rounded-2xl shadow-2xl border-b-4 border-gray-200 flex flex-col items-center rotate-12">
+            <div className="absolute -top-4 -right-4 z-20 animate-bounce-slow hidden lg:block">
+              <div className="bg-white text-main px-6 py-3 rounded-2xl shadow-2xl border-b-4 border-gray-200 flex flex-col items-center rotate-12">
                 <span className="text-[10px] uppercase tracking-[0.2em] font-black opacity-60">
                   Premium
                 </span>
@@ -58,13 +61,14 @@ export default function Hero() {
 
             <div className="relative z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.4)]">
               <Image
-                src="/images/hero.webp"
+                src="/images/HeroImage.webp"
                 width={700}
                 height={700}
                 loading="eager"
                 alt="Akula Topping Collection"
                 className="w-full h-auto object-contain"
                 priority
+                sizes="(max-width:768px) 100vw, 50vw"
               />
             </div>
           </motion.div>

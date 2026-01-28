@@ -1,9 +1,9 @@
 "use client";
-
 import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { pages } from "@/src/utils/constants";
 
 export default function Catalog() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -12,16 +12,6 @@ export default function Catalog() {
   const [isUserInteracting, setIsUserInteracting] = useState(false);
 
   const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const pages = [
-    "/images/catalog/1-Picsart-AiImageEnhancer.jpg",
-    "/images/catalog/catalogue-D (1)_page-0002.jpg",
-    "/images/catalog/catalogue-D (1)_page-0003.jpg",
-    "/images/catalog/catalogue-D (1)_page-0004.jpg",
-    "/images/catalog/catalogue-D (1)_page-0005.jpg",
-    "/images/catalog/catalogue-D (1)_page-0006.jpg",
-    "/images/catalog/catalogue-D (1)_page-0007.jpg",
-  ];
 
   const flipDuration = 600;
   const autoSwipeDelay = 3000;
@@ -53,7 +43,7 @@ export default function Catalog() {
     }, autoSwipeDelay);
 
     return () => clearInterval(interval);
-  }, [isFlipping, isUserInteracting, pages.length]);
+  }, [isFlipping, isUserInteracting]);
 
   const handleNext = () => {
     if (isFlipping) return;
@@ -78,7 +68,10 @@ export default function Catalog() {
   };
 
   return (
-    <section id="catalog" className="py-2 from-gray-100 via-gray-50 to-white min-h-screen flex items-center justify-center ">
+    <section
+      id="catalog"
+      className="py-2 from-gray-100 via-gray-50 to-white min-h-screen flex items-center justify-center "
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
@@ -108,14 +101,13 @@ export default function Catalog() {
                     transition={{ duration: 0.6, ease: "easeInOut" }}
                     onPointerDown={registerInteraction}
                   >
-                    <div className="relative aspect-[3/4] w-full">
+                    <div className="relative aspect-3/4 w-full">
                       <Image
                         src={pages[currentPage]}
                         alt={`Page ${currentPage + 1}`}
                         fill
                         className="object-cover"
                         quality={80}
-                       
                       />
                     </div>
                   </motion.div>

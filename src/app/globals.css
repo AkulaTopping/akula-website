@@ -26,7 +26,4 @@ body {
   min-height: 100%;
   font-family: var(--font-sans);
   color: var(--foreground);
-
-  /* ✅ Correct gradient usage */
-  background: var(--background-gradient);
 }
