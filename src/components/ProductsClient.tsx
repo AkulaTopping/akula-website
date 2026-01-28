@@ -18,8 +18,8 @@ export default function ProductsClient({ products }: { products: Product[] }) {
     );
     const url =
       social === "facebook"
-        ? `https://m.me/${process.env.NEXT_PUBLIC_FACEBOOK_ID}?ref=${message}`
-        : `https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}?text=${message}`;
+        ? `https://m.me/mohamedanwer741?ref=${message}`
+        : `https://wa.me/01011286690?text=${message}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
