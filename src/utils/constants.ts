@@ -178,3 +178,7 @@ export const products: Product[] = [
     flavor: "Passion Fruit",
   },
 ];
+export const tel = Number("01050677740");
+export const support = Number("01007006871");
+export const gmail = "akulatopping@gmail.com";
+export const facebook = "mohamedanwer741";

@@ -1,3 +1,4 @@
+import { facebook, gmail, tel, support } from "@/src/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -32,7 +33,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-5">
               <Link
-                href={`https://m.me/${process.env.NEXT_Public_FACEBOOK_ID}`}
+                href={`https://m.me/${facebook}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-500  hover:text-[#155dfc] transition-all duration-300 transform hover:-translate-y-1"
@@ -41,7 +42,7 @@ export default function Footer() {
                 <FaFacebook className="w-5 h-5" />
               </Link>
               <Link
-                href={`https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}`}
+                href={`https://wa.me/+20${tel}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-500 hover:text-[#00a63d] transition-all duration-300 transform hover:-translate-y-1"
@@ -102,19 +103,19 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <FaPhoneAlt className="w-3 h-3 mt-1 text-secondary" />
                 <Link
-                  href={`tel:+${process.env.NEXT_PUBLIC_CONTACT_PHONE}`}
+                  href={`tel:+20${support}`}
                   className="hover:text-white transition-colors"
                 >
-                  +20 105 067 7740
+                  +20 {support}
                 </Link>
               </li>
               <li className="flex items-start gap-3">
                 <FaEnvelope className="w-3 h-3 mt-1 text-secondary" />
                 <Link
-                  href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL}`}
+                  href={`mailto:${gmail}`}
                   className="hover:text-white transition-colors"
                 >
-                  {process.env.NEXT_PUBLIC_CONTACT_EMAIL}
+                  {gmail}
                 </Link>
               </li>
               <li className="flex items-start gap-3">
