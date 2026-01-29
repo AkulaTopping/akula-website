@@ -33,7 +33,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-5">
               <Link
-                href={`https://m.me/${facebook}`}
+                href={`${facebook}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-500  hover:text-[#155dfc] transition-all duration-300 transform hover:-translate-y-1"
@@ -135,9 +135,12 @@ export default function Footer() {
               Instant Access
             </h4>
             <div className="bg-white p-2 rounded-xl inline-block group cursor-pointer overflow-hidden">
-              <div className="w-24 h-24 bg-gray-200 flex items-center justify-center text-[10px] text-gray-400 text-center p-2 uppercase">
-                QR Code Placeholder
-              </div>
+              <Image
+                src="/images/qr-code.png"
+                alt="QR Code"
+                width={100}
+                height={100}
+              />
             </div>
             <p className="text-[10px] text-gray-600 mt-4 uppercase tracking-widest">
               Scan for catalog

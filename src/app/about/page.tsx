@@ -96,7 +96,7 @@ const AboutPage = () => {
                   </h4>
                   <div className="h-1 w-8 bg-secondary mb-3" />
                   <p className="text-gray-400 uppercase tracking-widest text-[10px] font-bold">
-                    Elite Strategic Partners
+                    Elite Distributors
                   </p>
                 </div>
               </div>

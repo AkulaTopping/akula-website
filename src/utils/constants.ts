@@ -181,4 +181,5 @@ export const products: Product[] = [
 export const tel = Number("01050677740");
 export const support = Number("01007006871");
 export const gmail = "akulatopping@gmail.com";
-export const facebook = "mohamedanwer741";
+export const facebook = "https://m.me/Akula Topping";
+export const facebookMessages = "https://m.me/akulatopping";

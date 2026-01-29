@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Product } from "@/src/utils/types";
 import ProductCard from "@/src/components/ProductCard";
 import { FaFacebookMessenger, FaWhatsapp } from "react-icons/fa";
-import { facebook, tel } from "@/src/utils/constants";
+import { facebook, tel, facebookMessages } from "@/src/utils/constants";
 
 export default function ProductsClient({ products }: { products: Product[] }) {
   const [mainProduct, setMainProduct] = useState(products[0]);
@@ -19,7 +19,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
     );
     const url =
       social === "facebook"
-        ? `https://m.me/${facebook}?ref=${message}`
+        ? `${facebookMessages}`
         : `https://wa.me/+20${tel}?text=${message}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
