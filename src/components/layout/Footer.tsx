@@ -8,6 +8,7 @@ import {
   FaPhoneAlt,
   FaMapMarkerAlt,
 } from "react-icons/fa";
+import LocalizedText from "@/src/components/LocalizedText";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -28,8 +29,10 @@ export default function Footer() {
               />
             </div>
             <p className="text-gray-500 text-sm leading-relaxed max-w-xs">
-              Crafting premium natural toppings and artisanal syrups. Defined by
-              nature, refined by quality.
+              <LocalizedText
+                id="footer_brand_desc"
+                fallback="Crafting premium natural toppings and artisanal syrups. Defined by nature, refined by quality."
+              />
             </p>
             <div className="flex gap-5">
               <Link
@@ -56,7 +59,7 @@ export default function Footer() {
           {/* 2. Exploration */}
           <div>
             <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-6">
-              Navigation
+              <LocalizedText id="footer_nav_title" fallback="Navigation" />
             </h4>
             <ul className="space-y-4 text-gray-500 text-sm">
               <li>
@@ -64,7 +67,7 @@ export default function Footer() {
                   href="/about"
                   className="hover:text-white transition-colors duration-200"
                 >
-                  Our Story
+                  <LocalizedText id="footer_our_story" fallback="Our Story" />
                 </Link>
               </li>
               <li>
@@ -72,7 +75,10 @@ export default function Footer() {
                   href="/products"
                   className="hover:text-white transition-colors duration-200"
                 >
-                  Product Collection
+                  <LocalizedText
+                    id="footer_products"
+                    fallback="Product Collection"
+                  />
                 </Link>
               </li>
               <li>
@@ -80,7 +86,10 @@ export default function Footer() {
                   href="#"
                   className="hover:text-white transition-colors duration-200"
                 >
-                  The Journal (Blog)
+                  <LocalizedText
+                    id="footer_blog"
+                    fallback="The Journal (Blog)"
+                  />
                 </Link>
               </li>
               <li>
@@ -88,7 +97,10 @@ export default function Footer() {
                   href="#"
                   className="hover:text-white transition-colors duration-200"
                 >
-                  Partnerships
+                  <LocalizedText
+                    id="footer_partnerships"
+                    fallback="Partnerships"
+                  />
                 </Link>
               </li>
             </ul>
@@ -97,7 +109,7 @@ export default function Footer() {
           {/* Support */}
           <div>
             <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-6">
-              Support
+              <LocalizedText id="footer_support_title" fallback="Support" />
             </h4>
             <ul className="space-y-4 text-gray-500 text-sm">
               <li className="flex items-start gap-3">
@@ -106,7 +118,7 @@ export default function Footer() {
                   href={`tel:+20${support}`}
                   className="hover:text-white transition-colors"
                 >
-                  +20 {support}
+                   0{support}
                 </Link>
               </li>
               <li className="flex items-start gap-3">
@@ -121,9 +133,10 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <FaMapMarkerAlt className="w-3 h-3 mt-1 text-secondary" />
                 <span>
-                  Third Industrial Zone <br />
-                  Cairo–Alexandria Ag. Road <br />
-                  Banha, Egypt
+                  <LocalizedText
+                    id="footer_location"
+                    fallback="Third Industrial Zone, Cairo–Alexandria Ag. Road, Banha, Egypt"
+                  />
                 </span>
               </li>
             </ul>
@@ -132,7 +145,10 @@ export default function Footer() {
           {/* 4. Interactive QR */}
           <div>
             <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-6">
-              Instant Access
+              <LocalizedText
+                id="footer_instant_access"
+                fallback="Instant Access"
+              />
             </h4>
             <div className="bg-white p-2 rounded-xl inline-block group cursor-pointer overflow-hidden">
               <Image
@@ -143,7 +159,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-[10px] text-gray-600 mt-4 uppercase tracking-widest">
-              Scan for catalog
+              <LocalizedText id="footer_scan_qr" fallback="Scan for catalog" />
             </p>
           </div>
         </div>
@@ -151,11 +167,20 @@ export default function Footer() {
         {/* Legal & Footer Bottom */}
         <div className="border-t border-gray-900 pt-2 mt-2">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] uppercase tracking-widest font-medium text-gray-600">
-            <p>&copy; {currentYear} Akula Topping. All Rights Reserved.</p>
+            <p>
+              &copy; {currentYear} Akula Topping.{" "}
+              <LocalizedText
+                id="footer_copyright"
+                fallback="All Rights Reserved."
+              />
+            </p>
             <div className="flex gap-8">
-              <span className="text-gray-400">100% Natural</span>
-              <span className="text-gray-400">Premium Quality</span>
-              <span className="text-gray-400">Authentic Taste</span>
+              <span className="text-gray-400">
+                <LocalizedText
+                  id="footer_taglines"
+                  fallback="100% Natural, Premium Quality, Authentic Taste"
+                />
+              </span>
             </div>
           </div>
         </div>

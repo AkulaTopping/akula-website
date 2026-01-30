@@ -58,22 +58,22 @@ const AboutPage = () => {
 
               <div className="space-y-6 text-gray-600 text-base lg:text-lg leading-relaxed font-light">
                 <p>
-                  What began as a specialized pursuit of artisanal chocolate and
-                  caramel has evolved into a regional benchmark for excellence.
-                  Our early success was built on a simple promise:{" "}
-                  <span className="text-black font-medium">
-                    Seamless Perfection.
-                  </span>
+                  <LocalizedText
+                    id="about_evolution_p1"
+                    fallback="What began as a specialized pursuit of artisanal chocolate and caramel has evolved into a regional benchmark for excellence. Our early success was built on a simple promise: Seamless Perfection."
+                  />
                 </p>
                 <p>
-                  By 2025, we scaled our vision,we introduced a diverse line of
-                  premium sauces crafted from carefully selected natural fruits,
-                  delivering rich and genuine flavors.
+                  <LocalizedText
+                    id="about_evolution_p2"
+                    fallback="By 2025, we scaled our vision, we introduced a diverse line of premium sauces crafted from carefully selected natural fruits, delivering rich and genuine flavors."
+                  />
                 </p>
                 <p>
-                  Today, our network bridges governorates, connecting elite
-                  distributors with a shared passion for setting new industry
-                  standards through innovation and long-term integrity.
+                  <LocalizedText
+                    id="about_evolution_p3"
+                    fallback="Today, our network bridges governorates, connecting elite distributors with a shared passion for setting new industry standards through innovation and long-term integrity."
+                  />
                 </p>
               </div>
 
@@ -155,7 +155,7 @@ const AboutPage = () => {
                 style={{ opacity: curtainHeight }}
                 className="text-white text-3xl font-extralight tracking-[1.5em] uppercase pl-[1.5em]"
               >
-                Discover
+                <LocalizedText id="about_discover" fallback="Discover" />
               </motion.h2>
             </motion.div>
           </div>

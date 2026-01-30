@@ -8,6 +8,13 @@ import LocalizedText from "@/src/components/LocalizedText";
 
 export default function ProductShowcase() {
   const [active, setActive] = React.useState(sellingProducts[0]);
+  const sellingKey = (name: string) =>
+    `selling_${name
+      .toLowerCase()
+      .replace(/\s+/g, "_")
+      .replace(/[^a-z0-9_]/g, "")} _name`
+      .replace(/\s+/g, "")
+      .replace(/__+/g, "_");
 
   return (
     <div className="w-full flex flex-col bg-secondary p-6 min-h-[calc(100svh-64px)]">
@@ -27,7 +34,10 @@ export default function ProductShowcase() {
             <LocalizedText id="explore_premium" />
           </span>
           <h1 className="text-3xl md:text-6xl font-black text-gray-900 mt-2 mb-4 leading-none">
-            {active.name}
+            <LocalizedText
+              id={sellingKey(active.name)}
+              fallback={active.name}
+            />
           </h1>
           <p className="text-white max-w-sm mx-auto lg:mx-0 text-sm md:text-2xl">
             <LocalizedText id="bestSelling_description" />
@@ -76,7 +86,12 @@ export default function ProductShowcase() {
             <p className="text-xs text-gray-400 font-bold mb-1">
               {active.weight} <LocalizedText id="weight_unit" />
             </p>
-            <h3 className="font-bold text-xl text-gray-800">{active.name}</h3>
+            <h3 className="font-bold text-xl text-gray-800">
+              <LocalizedText
+                id={sellingKey(active.name)}
+                fallback={active.name}
+              />
+            </h3>
             <div className="flex items-center justify-between mt-6">
               <span className="text-2xl font-black text-gray-900">
                 {active.price}{" "}

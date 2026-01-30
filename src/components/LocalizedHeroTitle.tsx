@@ -59,8 +59,11 @@ export default function LocalizedHeroTitle({
     };
   }, []);
 
-  const dict = translations[lang] ?? {};
-  const template = dict[id] ?? id;
+  interface Dict {
+    [key: string]: string;
+  }
+  const dict = translations[lang] as Dict ?? {};
+  const template  = dict[id] ?? id;
 
   const parts = template.split(/(\{[^}]+\})/g);
 
@@ -71,7 +74,7 @@ export default function LocalizedHeroTitle({
 
   return (
     <>
-      {parts.map((part, i) => {
+      {parts.map((part: string, i: number) => {
         const key = part.replace(/[{}]/g, "");
 
         if (key in tokens) {
