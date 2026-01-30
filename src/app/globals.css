@@ -27,3 +27,13 @@ body {
   font-family: var(--font-sans);
   color: var(--foreground);
 }
+
+/* RTL support: when html dir is rtl, make layout flow right-to-left */
+[dir="rtl"] {
+  direction: rtl;
+}
+
+[dir="rtl"] .container,
+.rtl .container {
+  text-align: right;
+}

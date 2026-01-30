@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import LocalizedText from "@/src/components/LocalizedText";
 
 const AboutPage = () => {
   const containerRef = useRef(null);
@@ -33,20 +34,18 @@ const AboutPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 className="text-secondary font-bold tracking-[0.3em] uppercase text-[10px] block mb-6"
               >
-                Est. 2023 — The Art of Purity
+                <LocalizedText id="about_tagline" />
               </motion.span>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-8">
-                Nature&apos;s Finest, <br />
-                <span className="text-gray-400 font-light italic">Taste</span>
+                <LocalizedText id="about_heading_primary" /> <br />
+                <span className="text-gray-400 font-light italic">
+                  <LocalizedText id="about_heading_secondary" />
+                </span>
               </h1>
 
               <p className="text-lg lg:text-xl text-gray-500 leading-relaxed font-light">
-                We believe that the most exquisite flavors are not
-                manufactured—they are harvested. Our mission is to preserve that
-                authenticity and bring it directly to your table through premium
-                sauces defined by uncompromised quality, clarity, and respect
-                for every ingredient.
+                <LocalizedText id="about_intro" />
               </p>
             </section>
 
@@ -54,7 +53,7 @@ const AboutPage = () => {
             <section className="relative">
               <div className="absolute -left-6 top-0 bottom-0 w-px bg-gray-100 hidden sm:block" />
               <h2 className="text-2xl lg:text-3xl font-bold mb-8">
-                Our Evolution
+                <LocalizedText id="our_evolution" />
               </h2>
 
               <div className="space-y-6 text-gray-600 text-base lg:text-lg leading-relaxed font-light">
@@ -86,7 +85,7 @@ const AboutPage = () => {
                   </h4>
                   <div className="h-1 w-8 bg-secondary mb-3" />
                   <p className="text-gray-400 uppercase tracking-widest text-[10px] font-bold">
-                    Raw Natural Origins
+                    <LocalizedText id="raw_natural_origins" />
                   </p>
                 </div>
 
@@ -96,7 +95,7 @@ const AboutPage = () => {
                   </h4>
                   <div className="h-1 w-8 bg-secondary mb-3" />
                   <p className="text-gray-400 uppercase tracking-widest text-[10px] font-bold">
-                    Elite Distributors
+                    <LocalizedText id="elite_distributors" />
                   </p>
                 </div>
               </div>
@@ -120,12 +119,10 @@ const AboutPage = () => {
             <section className="pb-16 lg:pb-32">
               <div className="max-w-md">
                 <h2 className="text-sm uppercase tracking-widest font-black text-black mb-6">
-                  The Essence
+                  <LocalizedText id="the_essence" />
                 </h2>
                 <blockquote className="text-2xl lg:text-3xl text-gray-800 font-serif italic leading-snug">
-                  We don&apos;t just supply ingredients; we provide the{" "}
-                  <span className="text-secondary">elemental soul</span> for
-                  every drink and dessert masterpiece.
+                  <LocalizedText id="essence_quote" />
                 </blockquote>
               </div>
             </section>

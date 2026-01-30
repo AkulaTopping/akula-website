@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import LocalizedText from "@/src/components/LocalizedText";
+import LocalizedHeroTitle from "@/src/components/LocalizedHeroTitle";
 
 export default function Hero() {
   return (
@@ -21,21 +23,26 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl lg:text-8xl font-black mb-6 leading-[0.95] text-white tracking-tighter">
-              Let <span className="text-secondary">Akula</span> take your drink
-              to a{" "}
-              <span className="bg-linear-to-r from-secondary to-orange-300 bg-clip-text text-transparent">
-                whole new level
-              </span>
+              <LocalizedHeroTitle
+                id="hero_title_full"
+                brandElement={<span className="text-secondary">Akula</span>}
+                emphasisElement={
+                  <span className="bg-linear-to-r from-secondary to-orange-300 bg-clip-text text-transparent">
+                    {/* emphasis text will be injected */}
+                  </span>
+                }
+              />
             </h1>
             <p className="text-lg md:text-xl text-white/80 mb-8 max-w-lg mx-auto lg:mx-0 leading-tight">
-              100% natural, delicious syrup toppings for all your favorite
-              drinks. Enhance every moment with authentic flavors.
+              <LocalizedText id="hero_subtitle" />
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 p-4 justify-center lg:justify-start">
               <Link href="/products">
                 <button className="bg-secondary text-white px-10 py-4 rounded-full font-bold hover:shadow-[0_0_20px_rgba(245,158,37,0.5)] transition-all text-lg group overflow-hidden relative">
-                  <span className="relative z-10">Explore Flavors</span>
+                  <span className="relative z-10">
+                    <LocalizedText id="hero_cta" />
+                  </span>
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform" />
                 </button>
               </Link>

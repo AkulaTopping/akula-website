@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { pages } from "@/src/utils/constants";
+import LocalizedText from "@/src/components/LocalizedText";
 
 export default function Catalog() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -75,9 +76,11 @@ export default function Catalog() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Product Catalog
+            <LocalizedText id="catalog_title" />
           </h2>
-          <p className="text-lg text-gray-600">Swipe through our collection</p>
+          <p className="text-lg text-gray-600">
+            <LocalizedText id="catalog_subtitle" />
+          </p>
         </div>
 
         <div className="relative max-w-5xl mx-auto">

@@ -1,5 +1,6 @@
 import { recipes } from "@/src/utils/constants";
 import Image from "next/image";
+import LocalizedText from "@/src/components/LocalizedText";
 
 export default function FeaturedRecipes() {
   return (
@@ -7,9 +8,11 @@ export default function FeaturedRecipes() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-gray-800">
-            Featured Recipes
+            <LocalizedText id="featured_title" />
           </h2>
-          <p className="text-gray-600 mt-2">see our most popular recipes</p>
+          <p className="text-gray-600 mt-2">
+            <LocalizedText id="featured_subtitle" />
+          </p>
         </div>
 
         {/* Grid instead of flex */}
@@ -33,11 +36,17 @@ export default function FeaturedRecipes() {
               {/* Content */}
               <div className="flex-1 pb-3 text-center text-white space-y-1 flex flex-col justify-center">
                 <h3 className="text-sm font-semibold tracking-wide">
-                  {recipe.title}
+                  <LocalizedText
+                    id={`recipe_${recipe.id}_title`}
+                    fallback={recipe.title}
+                  />
                 </h3>
 
                 <p className="text-xs opacity-85 leading-snug line-clamp-2">
-                  {recipe.description}
+                  <LocalizedText
+                    id={`recipe_${recipe.id}_description`}
+                    fallback={recipe.description}
+                  />
                 </p>
               </div>
             </div>

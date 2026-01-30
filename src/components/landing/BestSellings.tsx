@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import LocalizedText from "@/src/components/LocalizedText";
 
 export default function ProductShowcase() {
   const [active, setActive] = React.useState(sellingProducts[0]);
@@ -12,23 +13,24 @@ export default function ProductShowcase() {
     <div className="w-full flex flex-col bg-secondary p-6 min-h-[calc(100svh-64px)]">
       <div className="text-center mb-8 lg:mb-4">
         <h2 className="text-3xl md:text-5xl font-bold text-gray-800">
-          Best Selling Sauces
+          <LocalizedText id="bestSelling_title" />
         </h2>
-        <p className="text-gray-600 mt-2">Swipe through our collection</p>
+        <p className="text-gray-600 mt-2">
+          <LocalizedText id="bestSelling_subtitle" />
+        </p>
       </div>
 
       <div className="grow grid grid-cols-1 lg:grid-cols-3 items-center md:gap-10 lg:gap-4">
         {/* LEFT TEXT */}
         <div className="order-2 lg:order-1 text-center lg:text-left z-10">
           <span className="uppercase tracking-[0.2em] text-xs font-bold text-main">
-            Premium Sauce
+            <LocalizedText id="explore_premium" />
           </span>
           <h1 className="text-3xl md:text-6xl font-black text-gray-900 mt-2 mb-4 leading-none">
             {active.name}
           </h1>
           <p className="text-white max-w-sm mx-auto lg:mx-0 text-sm md:text-2xl">
-            Crafted from the finest ingredients to elevate every drink. Inspired
-            by traditional recipes with a modern twist.
+            <LocalizedText id="bestSelling_description" />
           </p>
         </div>
 
@@ -72,16 +74,19 @@ export default function ProductShowcase() {
               />
             </div>
             <p className="text-xs text-gray-400 font-bold mb-1">
-              {active.weight} GM
+              {active.weight} <LocalizedText id="weight_unit" />
             </p>
             <h3 className="font-bold text-xl text-gray-800">{active.name}</h3>
             <div className="flex items-center justify-between mt-6">
               <span className="text-2xl font-black text-gray-900">
-                {active.price} <small className="text-xs">EGP</small>
+                {active.price}{" "}
+                <small className="text-xs">
+                  <LocalizedText id="currency" />
+                </small>
               </span>
               <Link href="/products">
                 <button className="bg-black text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-orange-600 transition-colors">
-                  View All
+                  <LocalizedText id="viewAll" />
                 </button>
               </Link>
             </div>

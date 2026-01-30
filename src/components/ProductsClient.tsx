@@ -5,7 +5,8 @@ import Image from "next/image";
 import { Product } from "@/src/utils/types";
 import ProductCard from "@/src/components/ProductCard";
 import { FaFacebookMessenger, FaWhatsapp } from "react-icons/fa";
-import { facebook, tel, facebookMessages } from "@/src/utils/constants";
+import { tel, facebookMessages } from "@/src/utils/constants";
+import LocalizedText from "@/src/components/LocalizedText";
 
 export default function ProductsClient({ products }: { products: Product[] }) {
   const [mainProduct, setMainProduct] = useState(products[0]);
@@ -45,19 +46,27 @@ export default function ProductsClient({ products }: { products: Product[] }) {
         {/* DETAILS */}
         <div className="flex flex-col justify-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-2">
-            {mainProduct.name}
+            <LocalizedText
+              id={`product_${mainProduct.id}_name`}
+              fallback={mainProduct.name}
+            />
           </h2>
           <p className="text-sm text-gray-500 uppercase tracking-widest mb-4">
-            {mainProduct.brand}
+            <LocalizedText
+              id={`product_${mainProduct.id}_brand`}
+              fallback={mainProduct.brand}
+            />
           </p>
           <p className="text-4xl font-bold text-primary mb-6">
-            {mainProduct.price.toFixed(2)} EGP
+            {mainProduct.price.toFixed(2)}{" "}
+            <LocalizedText id="currency" fallback="EGP" />
           </p>
 
           <p className="text-gray-600 mb-8">
-            Experience the refreshing taste of {mainProduct.flavor}. Our premium
-            sauce is crafted with natural ingredients for maximum flavor and
-            satisfaction.
+            <LocalizedText
+              id={`product_${mainProduct.id}_flavor`}
+              fallback={mainProduct.flavor}
+            />
           </p>
 
           <div className="flex gap-4">
@@ -66,7 +75,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
               className="flex-1 text-xs h-9 px-3 rounded-md bg-green-600 hover:bg-green-700 text-white transition flex items-center justify-center gap-2"
             >
               <FaWhatsapp className="w-5 h-6" />
-              Order on WhatsApp
+              <LocalizedText id="order_whatsapp" />
             </button>
 
             <button
@@ -74,7 +83,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
               className="flex-1 text-xs h-9 px-3 rounded-md bg-blue-600 hover:bg-blue-700 text-white transition flex items-center justify-center gap-2"
             >
               <FaFacebookMessenger className="w-5 h-6" />
-              Order on Facebook
+              <LocalizedText id="order_facebook" />
             </button>
           </div>
         </div>
@@ -83,7 +92,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
       {/* GRID */}
       <div>
         <h3 className="text-2xl font-bold text-gray-900 mb-8">
-          Our Collection
+          <LocalizedText id="collection_title" />
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -1,5 +1,6 @@
 import ProductsClient from "@/src//components/ProductsClient";
 import { products } from "@/src/utils/constants";
+import LocalizedText from "@/src/components/LocalizedText";
 
 export default function Page() {
   return (
@@ -12,11 +13,11 @@ export default function Page() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Fresh Vibes sauces
+            <LocalizedText id="products_page_title" />
           </h1>
 
           <p className="mt-4 text-blue-100 max-w-2xl mx-auto text-sm sm:text-base">
-            Premium quality syrups for every moment
+            <LocalizedText id="products_page_subtitle" />
           </p>
         </div>
 

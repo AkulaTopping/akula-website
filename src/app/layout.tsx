@@ -87,11 +87,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const inlineSetLang = `try{(function(){const l=localStorage.getItem('akula_lang');if(l==='ar'){document.documentElement.lang='ar';document.documentElement.dir='rtl';document.documentElement.classList.add('rtl')}else if(l==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';document.documentElement.classList.remove('rtl')} })()}catch(e){};`;
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script dangerouslySetInnerHTML={{ __html: inlineSetLang }} />
         <Header />
         {children}
         <Footer />
