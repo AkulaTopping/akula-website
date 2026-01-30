@@ -62,13 +62,6 @@ export default function ProductsClient({ products }: { products: Product[] }) {
             <LocalizedText id="currency" fallback="EGP" />
           </p>
 
-          <p className="text-gray-600 mb-8">
-            <LocalizedText
-              id={`product_${mainProduct.id}_flavor`}
-              fallback={mainProduct.flavor}
-            />
-          </p>
-
           <div className="flex gap-4">
             <button
               onClick={() => handleOrder(mainProduct, "whatsapp")}

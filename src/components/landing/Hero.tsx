@@ -16,7 +16,7 @@ export default function Hero() {
 
       <div className="container mx-auto px-6 relative z-10 flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-4">
         {/* Left content */}
-        <div className="flex-1 text-center lg:text-left py-12 lg:py-0">
+        <div className="flex-1 text-center lg:text-start py-12 lg:py-0">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -28,7 +28,7 @@ export default function Hero() {
                 brandElement={<span className="text-secondary">Akula</span>}
                 emphasisElement={
                   <span className="bg-linear-to-r from-secondary to-orange-300 bg-clip-text text-transparent">
-                    {/* emphasis text will be injected */}
+                    whole new level
                   </span>
                 }
               />

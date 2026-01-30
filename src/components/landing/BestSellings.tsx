@@ -29,7 +29,7 @@ export default function ProductShowcase() {
 
       <div className="grow grid grid-cols-1 lg:grid-cols-3 items-center md:gap-10 lg:gap-4">
         {/* LEFT TEXT */}
-        <div className="order-2 lg:order-1 text-center lg:text-left z-10">
+        <div className="order-2 lg:order-1 text-center lg:text-start z-10">
           <span className="uppercase tracking-[0.2em] text-xs font-bold text-main">
             <LocalizedText id="explore_premium" />
           </span>

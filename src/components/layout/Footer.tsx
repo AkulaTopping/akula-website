@@ -1,4 +1,10 @@
-import { facebook, gmail, tel, support } from "@/src/utils/constants";
+import {
+  facebook,
+  gmail,
+  tel,
+  support,
+  instagram,
+} from "@/src/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -7,6 +13,7 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaMapMarkerAlt,
+  FaInstagram,
 } from "react-icons/fa";
 import LocalizedText from "@/src/components/LocalizedText";
 
@@ -52,6 +59,15 @@ export default function Footer() {
                 aria-label="WhatsApp"
               >
                 <FaWhatsapp className="w-5 h-5" />
+              </Link>
+              <Link
+                href={`${instagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-[#fc6a1c] transition-all duration-300 transform hover:-translate-y-1"
+                aria-label="Instagram"
+              >
+                <FaInstagram className="w-5 h-5" />
               </Link>
             </div>
           </div>
@@ -118,7 +134,7 @@ export default function Footer() {
                   href={`tel:+20${support}`}
                   className="hover:text-white transition-colors"
                 >
-                   0{support}
+                  0{support}
                 </Link>
               </li>
               <li className="flex items-start gap-3">
@@ -130,13 +146,20 @@ export default function Footer() {
                   {gmail}
                 </Link>
               </li>
-              <li className="flex items-start gap-3">
-                <FaMapMarkerAlt className="w-3 h-3 mt-1 text-secondary" />
-                <span>
-                  <LocalizedText
-                    id="footer_location"
-                    fallback="Third Industrial Zone, Cairo–Alexandria Ag. Road, Banha, Egypt"
-                  />
+              <li className="flex items-start gap-3 group">
+                <FaMapMarkerAlt className="w-3 h-3 mt-1 text-secondary group-hover:scale-110 transition-transform shrink-0" />
+                <span className="leading-tight">
+                  <Link
+                    href="https://maps.app.goo.gl/f1Bj3UmhxLmkqFog9?g_st=iw"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm hover:text-secondary transition-colors cursor-pointer"
+                  >
+                    <LocalizedText
+                      id="footer_location"
+                      fallback="Third Industrial Zone, Cairo–Alexandria Ag. Road, Banha, Egypt"
+                    />
+                  </Link>
                 </span>
               </li>
             </ul>

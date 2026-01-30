@@ -62,14 +62,14 @@ export default function LocalizedHeroTitle({
   interface Dict {
     [key: string]: string;
   }
-  const dict = translations[lang] as Dict ?? {};
-  const template  = dict[id] ?? id;
-
+  const dict = (translations[lang] as Dict) ?? {};
+  const template = dict[id] ?? id;
+  const emphasisText = dict[`${id}_emphasis`] ?? "";
   const parts = template.split(/(\{[^}]+\})/g);
 
   const tokens: Record<string, React.ReactNode> = {
     brand: brandElement,
-    emphasis: React.cloneElement(emphasisElement),
+    emphasis: React.cloneElement(emphasisElement, {}, emphasisText),
   };
 
   return (
@@ -79,9 +79,7 @@ export default function LocalizedHeroTitle({
 
         if (key in tokens) {
           return (
-            <React.Fragment key={`${key}-${i}`}>
-              {tokens[key]}
-            </React.Fragment>
+            <React.Fragment key={`${key}-${i}`}>{tokens[key]}</React.Fragment>
           );
         }
 
