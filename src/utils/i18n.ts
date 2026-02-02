@@ -137,7 +137,7 @@ export const translations = {
     product_2_name: "صوص توت أزرق",
     product_2_brand: "انتعاش طبيعى",
 
-    product_3_name: "صوص توت العليق",
+    product_3_name: "صوص راسبري",
     product_3_brand: "انتعاش طبيعى",
 
     product_10_name: "صوص توت مشكّل",

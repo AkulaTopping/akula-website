@@ -110,6 +110,10 @@ export default function Catalog() {
                         alt={`Page ${currentPage + 1}`}
                         fill
                         className="object-cover"
+                        priority={currentPage === 0}
+                        sizes={
+                          "(max-width: 768px) 100vw,(max-width: 1200px) 80vw, 1200px"
+                        }
                         quality={80}
                       />
                     </div>
