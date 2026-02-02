@@ -175,7 +175,7 @@ export default function Footer() {
             </h4>
             <div className="bg-white p-2 rounded-xl inline-block group cursor-pointer overflow-hidden">
               <Image
-                src="/images/qr-code.webp"
+                src="/images/akulatopping.webp"
                 alt="QR Code"
                 width={100}
                 height={100}
