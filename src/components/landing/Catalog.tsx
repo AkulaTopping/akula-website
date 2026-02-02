@@ -93,25 +93,24 @@ export default function Catalog() {
                     className="relative bg-white rounded-lg shadow-2xl overflow-hidden"
                     style={{ transformStyle: "preserve-3d" }}
                     initial={{
-                      rotateY: flipDirection === "next" ? 45 : -45,
+                      rotateY: flipDirection === "next" ? 90 : -90,
                       opacity: 0,
                     }}
                     animate={{ rotateY: 0, opacity: 1 }}
                     exit={{
-                      rotateY: flipDirection === "next" ? -45 : 45,
+                      rotateY: flipDirection === "next" ? -90 : 90,
                       opacity: 0,
                     }}
                     transition={{ duration: 0.6, ease: "easeInOut" }}
                     onPointerDown={registerInteraction}
                   >
-                    <div className="relative h-full w-full">
+                    <div className="relative aspect-3/4 w-full">
                       <Image
                         src={pages[currentPage]}
                         alt={`Page ${currentPage + 1}`}
                         fill
                         className="object-cover"
-                        priority={currentPage === 0}
-                        sizes={"(max-width: 768px) 100vw, 475px"}
+                        quality={80}
                       />
                     </div>
                   </motion.div>
