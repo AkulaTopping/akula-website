@@ -1,5 +1,6 @@
-const nextConfig = {
+module.exports = {
   images: {
+    qualities: [25, 50, 75, 80],
     unoptimized: false,
   },
 };

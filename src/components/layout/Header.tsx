@@ -49,9 +49,10 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2">
           <Image
             src={"/images/logo.png"}
-            alt="Logo"
+            alt="Akula Topping Logo"
             width={110}
             height={40}
+            className="h-auto w-auto object-contain"
             priority
           />
         </Link>

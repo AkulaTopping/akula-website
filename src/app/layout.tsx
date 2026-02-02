@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://akulatopping.com"),
   title: {
     default: "Akula Topping | Premium Natural Sauces & Syrups",
     template: "%s | Akula Topping",

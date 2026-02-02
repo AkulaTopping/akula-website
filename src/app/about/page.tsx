@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
@@ -110,6 +109,7 @@ const AboutPage = () => {
                   src="/images/map.webp"
                   alt="Distribution Map"
                   fill
+                  sizes="(max-width: 768px) 100vw, 500px"
                   className="object-contain"
                 />
               </motion.div>
@@ -143,6 +143,7 @@ const AboutPage = () => {
                 alt="Premium Product Showcase"
                 fill
                 className="object-cover"
+                sizes="(max-width: 1200px) 100vw, 50vw"
                 priority
               />
             </motion.div>

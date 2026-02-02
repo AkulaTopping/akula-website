@@ -60,6 +60,7 @@ export default function ProductShowcase() {
                   src={active.image}
                   alt={active.name}
                   fill
+                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-contain"
                 />
               </div>
@@ -80,6 +81,7 @@ export default function ProductShowcase() {
                 src={active.image}
                 alt={active.name}
                 fill
+                sizes="256px"
                 className="object-contain"
               />
             </div>
@@ -127,6 +129,7 @@ export default function ProductShowcase() {
                   src={p.image}
                   alt={p.name}
                   fill
+                  sizes="(max-width: 768px) 56px, 80px"
                   className="object-contain"
                 />
               </div>

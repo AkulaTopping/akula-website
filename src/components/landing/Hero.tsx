@@ -75,7 +75,7 @@ export default function Hero() {
                 alt="Akula Topping Collection"
                 className="w-full h-auto object-contain"
                 priority
-                sizes="(max-width:768px) 100vw, 50vw"
+                sizes="(max-width:768px) 100vw, 500px"
               />
             </div>
           </motion.div>
