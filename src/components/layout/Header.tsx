@@ -48,87 +48,89 @@ export default function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src={"/images/logo.png"}
+            src={"/images/logo.webp"}
             alt="Akula Topping Logo"
             width={110}
             height={40}
+            quality={80}
             className="h-auto w-auto object-contain"
             priority
           />
         </Link>
-
-        <nav className="hidden md:flex items-center gap-8">
-          <Link
-            href="/"
-            className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
-          >
-            {t.home}
-          </Link>
-          <Link
-            href="/products"
-            className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
-          >
-            {t.products}
-          </Link>
-
-          <Link
-            href="/about"
-            className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
-          >
-            {t.about}
-          </Link>
-
-          <button
-            onClick={toggleLang}
-            aria-label="Toggle language"
-            className="ml-2 rounded border px-3 py-1 text-sm"
-          >
-            {lang === "en" ? "العربية" : "EN"}
-          </button>
-        </nav>
-
-        {/* Mobile: hamburger */}
-        <div className="md:hidden flex items-center">
-          <button
-            onClick={() => setMenuOpen((s) => !s)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            className="p-2 rounded-md border"
-          >
-            {!menuOpen ? (
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+        <div className="flex items-center gap-4">
+          <div className="flex gap-2">
+            <nav className="hidden md:flex items-center gap-8">
+              <Link
+                href="/"
+                className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
               >
-                <path
-                  d="M4 6h16M4 12h16M4 18h16"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            ) : (
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+                {t.home}
+              </Link>
+              <Link
+                href="/products"
+                className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
               >
-                <path
-                  d="M6 18L18 6M6 6l12 12"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            )}
-          </button>
+                {t.products}
+              </Link>
+
+              <Link
+                href="/about"
+                className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+              >
+                {t.about}
+              </Link>
+            </nav>
+            <button
+              onClick={toggleLang}
+              aria-label="Toggle language"
+              className="ml-2 rounded border px-3 py-1 text-sm"
+            >
+              {lang === "en" ? "العربية" : "EN"}
+            </button>
+          </div>
+          {/* Mobile: hamburger */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setMenuOpen((s) => !s)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              className="p-2 rounded-md border"
+            >
+              {!menuOpen ? (
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4 6h16M4 12h16M4 18h16"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6 18L18 6M6 6l12 12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -157,18 +159,6 @@ export default function Header() {
             >
               {t.about}
             </Link>
-
-            <div className="pt-2 border-t mt-2 flex items-center justify-between">
-              <button
-                onClick={() => {
-                  toggleLang();
-                  setMenuOpen(false);
-                }}
-                className="rounded border px-3 py-1 text-sm"
-              >
-                {lang === "en" ? "العربية" : "EN"}
-              </button>
-            </div>
           </div>
         </div>
       )}
