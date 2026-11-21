@@ -17,63 +17,65 @@ export default function ProductCard({
   return (
     <div
       onClick={onSelect}
-      className={`relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border-2 ${product.borderColor}`}
+      className="group relative bg-white rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 border border-[#ede9df] hover:border-[#c39b6e] hover:-translate-y-1.5 cursor-pointer flex flex-col justify-between"
     >
-      {/* IMAGE */}
-      <div className="relative aspect-square w-full p-4 sm:p-6">
+      {/* IMAGE CONTAINER */}
+      <div className="relative aspect-square w-full p-6 bg-[#fbf9f4] border-b border-[#f0ede6] overflow-hidden">
         <Image
           src={product.image}
           alt={product.name}
           width={400}
           height={400}
-          className="object-contain transition-transform duration-300 hover:scale-105"
+          className="object-contain w-full h-full transition-transform duration-500 group-hover:scale-106"
         />
       </div>
 
-      <div className="relative z-10 p-4 sm:p-5 bg-white">
-        <h3 className="font-semibold text-gray-800 text-xs sm:text-sm uppercase tracking-wide line-clamp-2">
-          <LocalizedText
-            id={`product_${product.id}_name`}
-            fallback={product.name}
-          />
-        </h3>
-
-        <p className="text-[10px] sm:text-xs text-gray-500 mb-2 uppercase">
+      {/* CONTENT */}
+      <div className="relative p-5 bg-white space-y-2">
+        <p className="text-[10px] text-[#c39b6e] uppercase tracking-[0.2em] font-semibold">
           <LocalizedText
             id={`product_${product.id}_brand`}
             fallback={product.brand}
           />
         </p>
 
-        <p className="text-base sm:text-lg font-bold text-primary mb-3">
+        <h3 className="font-bold text-sm sm:text-base text-[#18261f] tracking-tight line-clamp-1">
+          <LocalizedText
+            id={`product_${product.id}_name`}
+            fallback={product.name}
+          />
+        </h3>
+
+        <p className="text-lg font-bold text-[#124635] pt-1">
           {product.price.toFixed(2)}{" "}
-          <small className="text-xs">
+          <small className="text-xs font-semibold text-gray-500">
             <LocalizedText id="currency" fallback="EGP" />
           </small>
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-2">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onOrder("facebook");
-            }}
-            className="flex-1 text-xs h-9 px-3 rounded-md bg-blue-600 hover:bg-blue-700 text-white transition flex items-center justify-center gap-2"
-          >
-            <FaFacebookMessenger className="w-5 h-6" />
-            <LocalizedText id="order_facebook" />
-          </button>
-
+        <div className="flex gap-2 pt-2">
           {/* WHATSAPP */}
           <button
             onClick={(e) => {
               e.stopPropagation();
               onOrder("whatsapp");
             }}
-            className="flex-1 text-xs h-9 px-3 rounded-md bg-green-600 hover:bg-green-700 text-white transition flex items-center justify-center gap-2"
+            className="flex-1 text-xs font-semibold h-9 px-3 rounded-full bg-[#124635] hover:bg-[#0c2b20] text-white transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
           >
-            <FaWhatsapp className="w-5 h-6" />
-            <LocalizedText id="order_whatsapp" />
+            <FaWhatsapp className="w-4 h-4 text-[#25D366]" />
+            <span><LocalizedText id="order_whatsapp" /></span>
+          </button>
+
+          {/* MESSENGER */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onOrder("facebook");
+            }}
+            className="flex-1 text-xs font-semibold h-9 px-3 rounded-full bg-[#0084ff] hover:bg-[#0073e6] text-white transition flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+          >
+            <FaFacebookMessenger className="w-4 h-4" />
+            <span><LocalizedText id="order_facebook" /></span>
           </button>
         </div>
       </div>

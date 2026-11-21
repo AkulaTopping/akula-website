@@ -1,22 +1,27 @@
-
-
-import Hero from "@/src/components/landing/Hero";
-import BestSelling from "@/src/components/landing/BestSellings";
-import Catalog from "@/src/components/landing/Catalog";
-import FeaturedRecipes from "@/src/components/landing/FeaturedRecipes";
-
-import Video from "@/src/components/landing/Video";
+import Hero from "../components/landing/Hero";
+import Ticker from "../components/landing/Ticker";
+import BrandFilm from "../components/landing/BrandFilm";
+import WorldPreview from "../components/landing/WorldPreview";
+import ProductsSection from "../components/landing/ProductsSection";
+import ProfessionalSection from "../components/landing/ProfessionalSection";
+import EditorialSection from "../components/landing/EditorialSection";
+import FeaturedRecipes from "../components/landing/FeaturedRecipes";
+import ComingSoonSection from "../components/landing/ComingSoonSection";
+import JournalSection from "../components/landing/JournalSection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
-    
+    <main className="home-content">
       <Hero />
-      <BestSelling />
-      <Video />
-      <Catalog />
+      <Ticker />
+      <BrandFilm />
+      <WorldPreview />
+      <ProductsSection />
+      <ProfessionalSection />
+      <EditorialSection />
       <FeaturedRecipes />
-     
+      <ComingSoonSection />
+      <JournalSection />
     </main>
-  )
+  );
 }
