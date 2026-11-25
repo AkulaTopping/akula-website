@@ -1,212 +1,244 @@
-import {
-  facebook,
-  gmail,
-  tel,
-  support,
-  instagram,
-} from "@/src/utils/constants";
-import Image from "next/image";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
-import {
-  FaFacebook,
-  FaWhatsapp,
-  FaEnvelope,
-  FaPhoneAlt,
-  FaMapMarkerAlt,
-  FaInstagram,
-} from "react-icons/fa";
-import LocalizedText from "@/src/components/LocalizedText";
+import { useLanguage } from "../../context/LanguageContext";
+import { contactDetails } from "../../utils/referenceData";
 
 export default function Footer() {
+  const { isAr } = useLanguage();
+  const [email, setEmail] = useState("");
   const currentYear = new Date().getFullYear();
 
+  function handleCatalogRequest(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email) return;
+    const msg = isAr
+      ? `مرحبًا أكولة، أرجو إرسال الكتالوج إلى البريد الإلكتروني: ${email}`
+      : `Hello Akula, please send me the product catalogue for: ${email}`;
+    window.open(`https://wa.me/201050677740?text=${encodeURIComponent(msg)}`, "_blank");
+    setEmail("");
+  }
+
   return (
-    <footer className="bg-[#0a0a0a] text-white p-10 border-t border-gray-900">
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-10">
-          {/* 1. Brand Identity */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <Image
-                src="/images/akula-logo.webp"
-                alt="Akula Topping Logo"
-                width={120}
-                height={50}
-                className=" object-contain w-auto h-auto"
-              />
-            </div>
-            <p className="text-gray-500 text-sm leading-relaxed max-w-xs">
-              <LocalizedText
-                id="footer_brand_desc"
-                fallback="Crafting premium natural toppings and artisanal syrups. Defined by nature, refined by quality."
-              />
-            </p>
-            <div className="flex gap-5">
-              <Link
-                href={`${facebook}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500  hover:text-[#155dfc] transition-all duration-300 transform hover:-translate-y-1"
-                aria-label="Facebook"
-              >
-                <FaFacebook className="w-5 h-5" />
-              </Link>
-              <Link
-                href={`https://wa.me/+20${tel}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-[#00a63d] transition-all duration-300 transform hover:-translate-y-1"
-                aria-label="WhatsApp"
-              >
-                <FaWhatsapp className="w-5 h-5" />
-              </Link>
-              <Link
-                href={`${instagram}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-[#fc6a1c] transition-all duration-300 transform hover:-translate-y-1"
-                aria-label="Instagram"
-              >
-                <FaInstagram className="w-5 h-5" />
-              </Link>
-            </div>
-          </div>
-
-          {/* 2. Exploration */}
-          <div>
-            <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-6">
-              <LocalizedText id="footer_nav_title" fallback="Navigation" />
-            </h4>
-            <ul className="space-y-4 text-gray-500 text-sm">
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-white transition-colors duration-200"
-                >
-                  <LocalizedText id="footer_our_story" fallback="Our Story" />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/products"
-                  className="hover:text-white transition-colors duration-200"
-                >
-                  <LocalizedText
-                    id="footer_products"
-                    fallback="Product Collection"
-                  />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="hover:text-white transition-colors duration-200"
-                >
-                  <LocalizedText
-                    id="footer_blog"
-                    fallback="The Journal (Blog)"
-                  />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="hover:text-white transition-colors duration-200"
-                >
-                  <LocalizedText
-                    id="footer_partnerships"
-                    fallback="Partnerships"
-                  />
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Support */}
-          <div>
-            <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-6">
-              <LocalizedText id="footer_support_title" fallback="Support" />
-            </h4>
-            <ul className="space-y-4 text-gray-500 text-sm">
-              <li className="flex items-start gap-3">
-                <FaPhoneAlt className="w-3 h-3 mt-1 text-secondary" />
-                <Link
-                  href={`tel:+20${support}`}
-                  className="hover:text-white transition-colors"
-                >
-                  0{support}
-                </Link>
-              </li>
-              <li className="flex items-start gap-3">
-                <FaEnvelope className="w-3 h-3 mt-1 text-secondary" />
-                <Link
-                  href={`mailto:${gmail}`}
-                  className="hover:text-white transition-colors"
-                >
-                  {gmail}
-                </Link>
-              </li>
-              <li className="flex items-start gap-3 group">
-                <FaMapMarkerAlt className="w-3 h-3 mt-1 text-secondary group-hover:scale-110 transition-transform shrink-0" />
-                <span className="leading-tight">
-                  <Link
-                    href="https://maps.app.goo.gl/f1Bj3UmhxLmkqFog9?g_st=iw"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm hover:text-secondary transition-colors cursor-pointer"
-                  >
-                    <LocalizedText
-                      id="footer_location"
-                      fallback="Third Industrial Zone, Cairo–Alexandria Ag. Road, Banha, Egypt"
-                    />
-                  </Link>
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          {/* 4. Interactive QR */}
-          <div>
-            <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-gray-400 mb-6">
-              <LocalizedText
-                id="footer_instant_access"
-                fallback="Instant Access"
-              />
-            </h4>
-            <div className="bg-white p-2 rounded-xl inline-block group cursor-pointer overflow-hidden">
-              <Image
-                src="/images/akulatopping.webp"
-                alt="QR Code"
-                width={100}
-                height={100}
-              />
-            </div>
-            <p className="text-[10px] text-gray-600 mt-4 uppercase tracking-widest">
-              <LocalizedText id="footer_scan_qr" fallback="Scan for catalog" />
-            </p>
-          </div>
+    <footer className="contact-footer" id="contact">
+      <div className="akula-company-footer">
+        <div>
+          <strong>
+            {isAr ? "شركة أكولة للصناعات الغذائية" : "Akula Food Processing Company"}
+          </strong>
+          <small>
+            {isAr
+              ? "أكولة توبينج · نكهات للمشروبات والحلويات"
+              : "AKULA TOPPING"}
+          </small>
         </div>
+      </div>
 
-        {/* Legal & Footer Bottom */}
-        <div className="border-t border-gray-900 pt-2 mt-2">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] uppercase tracking-widest font-medium text-gray-600">
-            <p>
-              &copy; {currentYear} Akula Topping.{" "}
-              <LocalizedText
-                id="footer_copyright"
-                fallback="All Rights Reserved."
+      <div className="contact-footer-grid">
+        {/* Column 1: Exclusive Akula & Catalogue */}
+        <section className="footer-exclusive">
+          <h2>{isAr ? "حصري لأكولة" : "Exclusively Akula"}</h2>
+          <h3>{isAr ? "اكتشف جديدنا" : "Discover what is new"}</h3>
+          <p>
+            {isAr
+              ? "اطلب الكتالوج وتعرّف على النكهات والعبوات المتاحة."
+              : "Request our catalogue and explore available flavours and packaging."}
+          </p>
+          <form id="catalog-request" onSubmit={handleCatalogRequest}>
+            <label className="sr-only" htmlFor="catalog-email">
+              {isAr ? "بريدك الإلكتروني" : "Your email address"}
+            </label>
+            <div className="footer-email-box">
+              <input
+                id="catalog-email"
+                type="email"
+                required
+                placeholder={isAr ? "بريدك الإلكتروني" : "Your email address"}
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                aria-label={isAr ? "بريدك الإلكتروني" : "Your email address"}
               />
-            </p>
-            <div className="flex gap-8">
-              <span className="text-gray-400">
-                <LocalizedText
-                  id="footer_taglines"
-                  fallback="100% Natural, Premium Quality, Authentic Taste"
+              <button
+                type="submit"
+                aria-label={isAr ? "طلب الكتالوج على واتساب" : "Request catalogue on WhatsApp"}
+              >
+                {isAr ? "←" : "→"}
+              </button>
+            </div>
+            <small>
+              {isAr
+                ? "متابعة طلب الكتالوج على واتساب"
+                : "Continue your catalogue request on WhatsApp"}
+            </small>
+          </form>
+        </section>
+
+        {/* Column 2: Help & Contacts */}
+        <section className="footer-help">
+          <h2>{isAr ? "المساعدة" : "Help"}</h2>
+          <address>
+            {isAr ? (
+              <>
+                المنطقة الصناعية الثالثة،
+                <br />
+                طريق القاهرة الإسكندرية الزراعي،
+                <br />
+                بنها، مصر
+              </>
+            ) : (
+              <>
+                Third Industrial Zone,
+                <br />
+                Cairo–Alexandria Agricultural Road,
+                <br />
+                Banha, Egypt
+              </>
+            )}
+          </address>
+          <a href={`mailto:${contactDetails.email}`} className="footer-email" dir="ltr">
+            {contactDetails.email}
+          </a>
+          <a href={`tel:+20${contactDetails.tel}`}>
+            <bdi>{contactDetails.tel}</bdi>
+          </a>
+          <a className="complaint-phone" href={`tel:+20${contactDetails.support}`}>
+            {isAr ? "الشكاوى: " : "Complaints: "}
+            <bdi>{contactDetails.support}</bdi>
+          </a>
+        </section>
+
+        {/* Column 3: Useful Links */}
+        <nav className="footer-quick" aria-label={isAr ? "روابط تهمك" : "Useful links"}>
+          <h2>{isAr ? "روابط تهمك" : "Useful links"}</h2>
+          <Link href="/about">{isAr ? "من نحن" : "About us"}</Link>
+          <Link href="/products">{isAr ? "مجموعة المنتجات" : "Product collection"}</Link>
+          <Link href="/recipes">{isAr ? "أفكار ووصفات" : "Ideas & recipes"}</Link>
+          <Link href="/partners">
+            {isAr ? "التوزيع والشراكات" : "Distribution & partnerships"}
+          </Link>
+          <Link href="/contact">{isAr ? "تواصل معنا" : "Contact us"}</Link>
+        </nav>
+
+        {/* Column 4: Channels & QR */}
+        <section className="footer-channels">
+          <h2>
+            {isAr ? (
+              <>قنوات التواصل<br />الاجتماعي</>
+            ) : (
+              <>Social<br />channels</>
+            )}
+          </h2>
+          <div className="footer-qr-brand">
+            <div className="footer-qr-column">
+              <p className="footer-qr-caption">
+                {isAr ? "امسح رمز QR لعرض الكتالوج" : "Scan the QR code to view the catalogue"}
+              </p>
+              <a
+                href="/assets/qr.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={isAr ? "عرض رمز الكتالوج" : "View catalogue QR code"}
+              >
+                <img
+                  data-image-slot="asset:qr.jpg"
+                  src="/assets/qr.jpg"
+                  width={180}
+                  height={180}
+                  loading="lazy"
+                  decoding="async"
+                  alt={isAr ? "رمز QR كتالوج أكولة" : "Akula catalogue QR code"}
                 />
-              </span>
+              </a>
             </div>
+            <span className="footer-company-logo">
+              <img
+                data-image-slot="asset:akula-company-logo-v2.jpg"
+                src="/assets/akula-company-logo-v2.jpg"
+                alt={isAr ? "شعار شركة أكولة للصناعات الغذائية" : "Akula Food Processing Company logo"}
+                width={1254}
+                height={1254}
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
           </div>
-        </div>
+          <div className="footer-social">
+            <a
+              href={contactDetails.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              title="Facebook"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" style={{ width: "24px", height: "24px" }}>
+                <circle cx="12" cy="12" r="10" fill="currentColor" />
+                <path
+                  fill="#000"
+                  d="M13.5 21v-7.8H16l.4-3h-2.9V8.4c0-.9.3-1.5 1.6-1.5h1.5V4.2c-.3 0-1.2-.1-2.2-.1-2.3 0-3.9 1.4-3.9 4v2.1H8v3h2.5V21z"
+                />
+              </svg>
+            </a>
+            <a
+              href={`https://wa.me/${contactDetails.whatsappNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              title="WhatsApp"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                style={{ width: "24px", height: "24px" }}
+              >
+                <path d="M20.5 11.7a8.5 8.5 0 0 1-12.8 7.4L3 20.5l1.4-4.6A8.5 8.5 0 1 1 20.5 11.7Z" />
+                <path
+                  fill="currentColor"
+                  stroke="none"
+                  d="M8.1 7.2c-.4-.3-1.2.1-1.4.6-.8 2 2.3 6.6 6 8 1.8.7 3.1.1 3.5-.8.2-.5.2-.8-.1-1l-2-1c-.3-.2-.5-.1-.7.2l-.6.7c-.2.2-.4.2-.7.1-1.2-.5-2.5-1.7-3.1-2.8-.2-.3-.2-.5 0-.7l.5-.6c.2-.3.3-.5.1-.8l-.9-1.9c-.2-.2-.4-.2-.6-.2Z"
+                />
+              </svg>
+            </a>
+            <a
+              href={contactDetails.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              title="Instagram"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                aria-hidden="true"
+                style={{ width: "24px", height: "24px" }}
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4.2" />
+                <circle cx="17.6" cy="6.5" r="1" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+          </div>
+        </section>
+      </div>
+
+      <div className="contact-footer-copyright">
+        {isAr ? (
+          <>
+            أكولة توبينج <span id="year">{currentYear}</span>. جميع الحقوق محفوظة ©
+          </>
+        ) : (
+          <>
+            Akula Topping <span id="year">{currentYear}</span>. All rights reserved ©
+          </>
+        )}
       </div>
     </footer>
   );

@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "admin:hash": "node scripts/hash-admin-password.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.119.2",
     "framer-motion": "^12.27.4",
     "lucide-react": "^0.562.0",
     "next": "16.1.4",

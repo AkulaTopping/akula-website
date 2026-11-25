@@ -1,169 +1,126 @@
 "use client";
-import React, { useRef } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import LocalizedText from "@/src/components/LocalizedText";
 
-const AboutPage = () => {
-  const containerRef = useRef(null);
+import React from "react";
+import { useLanguage } from "../../context/LanguageContext";
+import { aboutContent } from "../../utils/referenceData";
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-  });
-
-  const curtainHeight = useTransform(smoothProgress, [0, 0.6], ["100%", "0%"]);
+export default function AboutPage() {
+  const { isAr } = useLanguage();
 
   return (
-    <main
-      ref={containerRef}
-      className="bg-[#fcfcfc] text-[#1a1a1a] selection:bg-secondary/20"
-    >
-      <div className="flex flex-col xl:flex-row min-h-screen">
-        <div className="w-full xl:w-6/12 p-6 sm:p-12 lg:p-20 xl:p-24 flex justify-center items-center">
-          <div className="max-w-2xl w-full space-y-20 lg:space-y-32">
-            <section className="pt-10">
-              <motion.span
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="text-secondary font-bold tracking-[0.3em] uppercase text-[10px] block mb-6"
-              >
-                <LocalizedText id="about_tagline" />
-              </motion.span>
+    <main className="about-page">
+      <div className="about-layout">
+        <div className="about-copy">
+          <section className="about-intro">
+            <span className="eyebrow">
+              {isAr ? aboutContent.eyebrowAr : aboutContent.eyebrow}
+            </span>
+            <h1>
+              {isAr ? (
+                <>
+                  {aboutContent.headingPrimaryAr}
+                  <br />
+                  <em>{aboutContent.headingSecondaryAr}</em>
+                </>
+              ) : (
+                <>
+                  {aboutContent.headingPrimary}
+                  <br />
+                  <em>{aboutContent.headingSecondary}</em>
+                </>
+              )}
+            </h1>
+            <p>{isAr ? aboutContent.introAr : aboutContent.intro}</p>
+          </section>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-8">
-                <LocalizedText id="about_heading_primary" /> <br />
-                <span className="text-gray-400 font-light italic">
-                  <LocalizedText id="about_heading_secondary" />
-                </span>
-              </h1>
+          <section className="about-evolution">
+            <h2>{isAr ? aboutContent.evolutionTitleAr : aboutContent.evolutionTitle}</h2>
+            <p>{isAr ? aboutContent.evolutionP1Ar : aboutContent.evolutionP1}</p>
+            <p>{isAr ? aboutContent.evolutionP2Ar : aboutContent.evolutionP2}</p>
+            <p>{isAr ? aboutContent.evolutionP3Ar : aboutContent.evolutionP3}</p>
 
-              <p className="text-lg lg:text-xl text-gray-500 leading-relaxed font-light">
-                <LocalizedText id="about_intro" />
-              </p>
-            </section>
-
-            {/* THE GROWTH STORY */}
-            <section className="relative">
-              <div className="absolute -left-6 top-0 bottom-0 w-px bg-gray-100 hidden sm:block" />
-              <h2 className="text-2xl lg:text-3xl font-bold mb-8">
-                <LocalizedText id="our_evolution" />
-              </h2>
-
-              <div className="space-y-6 text-gray-600 text-base lg:text-lg leading-relaxed font-light">
-                <p>
-                  <LocalizedText
-                    id="about_evolution_p1"
-                    fallback="What began as a specialized pursuit of artisanal chocolate and caramel has evolved into a regional benchmark for excellence. Our early success was built on a simple promise: Seamless Perfection."
-                  />
-                </p>
-                <p>
-                  <LocalizedText
-                    id="about_evolution_p2"
-                    fallback="By 2025, we scaled our vision, we introduced a diverse line of premium sauces crafted from carefully selected natural fruits, delivering rich and genuine flavors."
-                  />
-                </p>
-                <p>
-                  <LocalizedText
-                    id="about_evolution_p3"
-                    fallback="Today, our network bridges governorates, connecting elite distributors with a shared passion for setting new industry standards through innovation and long-term integrity."
-                  />
-                </p>
+            <div className="about-stats">
+              <div>
+                <strong dir="ltr">{aboutContent.stat1Num}</strong>
+                <span>{isAr ? aboutContent.stat1LabelAr : aboutContent.stat1Label}</span>
               </div>
-
-              {/*STATS */}
-              <div className="grid grid-cols-2 gap-12 pt-12">
-                <div className="group">
-                  <h4 className="text-5xl lg:text-6xl font-black tracking-tighter group-hover:text-secondary transition-colors">
-                    100%
-                  </h4>
-                  <div className="h-1 w-8 bg-secondary mb-3" />
-                  <p className="text-gray-400 uppercase tracking-widest text-[10px] font-bold">
-                    <LocalizedText id="raw_natural_origins" />
-                  </p>
-                </div>
-
-                <div className="group">
-                  <h4 className="text-5xl lg:text-6xl font-black tracking-tighter group-hover:text-secondary transition-colors">
-                    55+
-                  </h4>
-                  <div className="h-1 w-8 bg-secondary mb-3" />
-                  <p className="text-gray-400 uppercase tracking-widest text-[10px] font-bold">
-                    <LocalizedText id="elite_distributors" />
-                  </p>
-                </div>
+              <div>
+                <strong dir="ltr">{aboutContent.stat2Num}</strong>
+                <span>{isAr ? aboutContent.stat2LabelAr : aboutContent.stat2Label}</span>
               </div>
+            </div>
 
-              {/* DISTRIBUTION MAP */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                className="relative w-full aspect-square rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-2xl mt-16 p-4"
+            <figure className="distribution" style={{ maxWidth: "760px", marginInline: "auto" }}>
+              <a
+                href="https://wa.me/201050677740"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={isAr ? "تواصل مع مبيعات أكولة على واتساب" : "Contact Akula sales on WhatsApp"}
+                style={{ display: "block" }}
               >
-                <Image
-                  src="/images/map.webp"
-                  alt="Distribution Map"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 500px"
-                  className="object-contain"
+                <img
+                  src={aboutContent.mapImage}
+                  width="1024"
+                  height="1536"
+                  alt={
+                    isAr
+                      ? "أكولة أقرب لك في كل محافظة — خريطة محافظات مصر السبع والعشرين"
+                      : "Akula is closer to you across all 27 Egypt governorates"
+                  }
+                  loading="lazy"
+                  decoding="async"
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    height: "auto",
+                    maxHeight: "none",
+                    objectFit: "contain",
+                  }}
                 />
-              </motion.div>
-            </section>
+              </a>
+            </figure>
+          </section>
 
-            {/* THE QUOTE */}
-            <section className="pb-16 lg:pb-32">
-              <div className="max-w-md">
-                <h2 className="text-sm uppercase tracking-widest font-black text-black mb-6">
-                  <LocalizedText id="the_essence" />
-                </h2>
-                <blockquote className="text-2xl lg:text-3xl text-gray-800 font-serif italic leading-snug">
-                  <LocalizedText id="essence_quote" />
-                </blockquote>
-              </div>
-            </section>
-          </div>
+          <section className="about-essence">
+            <span className="eyebrow">
+              {isAr ? aboutContent.essenceTitleAr : aboutContent.essenceTitle}
+            </span>
+            <blockquote>
+              {isAr ? aboutContent.essenceQuoteAr : aboutContent.essenceQuote}
+            </blockquote>
+          </section>
         </div>
 
-        <div className="w-full xl:w-6/12 bg-white xl:sticky xl:top-0 h-[60vh] sm:h-[80vh] xl:h-screen overflow-hidden flex items-center justify-center">
-          <div className="relative w-full h-full p-6 sm:p-12 xl:p-0">
-            <motion.div
-              className="relative h-full w-full"
-              initial={{ scale: 1.1, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.5 }}
-            >
-              <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent z-10" />
-              <Image
-                src="/images/aboutimg.webp"
-                alt="Premium Product Showcase"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1200px) 100vw, 50vw"
-                priority
-              />
-            </motion.div>
-
-            <motion.div
-              style={{ height: curtainHeight }}
-              className="hidden xl:flex absolute top-0 left-0 w-full bg-[#111] z-20 items-center justify-center overflow-hidden"
-            >
-              <motion.h2
-                style={{ opacity: curtainHeight }}
-                className="text-white text-3xl font-extralight tracking-[1.5em] uppercase pl-[1.5em]"
-              >
-                <LocalizedText id="about_discover" fallback="Discover" />
-              </motion.h2>
-            </motion.div>
+        <aside className="about-visual">
+          <img
+            data-image-slot="asset:about-showcase.webp"
+            src={aboutContent.showcaseImage}
+            width="2688"
+            height="1536"
+            alt="Akula Topping surrounded by fruit, chocolate and caramel flavours"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="about-visual-caption">
+            <span dir="ltr">AKULA TOPPING</span>
+            <p>
+              {isAr ? (
+                <>
+                  من وحي الطبيعة.
+                  <br />
+                  بأعلى معايير الجودة.
+                </>
+              ) : (
+                <>
+                  Defined by nature.
+                  <br />
+                  Refined by quality.
+                </>
+              )}
+            </p>
           </div>
-        </div>
+        </aside>
       </div>
     </main>
   );
-};
-
-export default AboutPage;
+}

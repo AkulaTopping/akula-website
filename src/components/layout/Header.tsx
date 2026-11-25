@@ -1,167 +1,185 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { translations, type Lang } from "../../utils/i18n";
-
-const LANG_KEY = "akula_lang";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Header() {
-  const [lang, setLang] = useState<Lang>(() => {
-    if (typeof window === "undefined") return "en";
-    const stored = localStorage.getItem(LANG_KEY) as Lang | null;
-    return stored || "en";
-  });
-
-  function applyLang(l: Lang) {
-    if (typeof document === "undefined") return;
-    const dir = l === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = l;
-    document.documentElement.dir = dir;
-    if (dir === "rtl") document.documentElement.classList.add("rtl");
-    else document.documentElement.classList.remove("rtl");
-  }
+  const { isAr, toggleLang } = useLanguage();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [langPickerOpen, setLangPickerOpen] = useState(false);
+  const langRef = useRef<HTMLDetailsElement>(null);
+  const productsRef = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
-    applyLang(lang);
-  }, [lang]);
-
-  function toggleLang() {
-    const next: Lang = lang === "en" ? "ar" : "en";
-    setLang(next);
-    localStorage.setItem(LANG_KEY, next);
-    try {
-      window.dispatchEvent(
-        new CustomEvent("akula-lang-changed", { detail: next }),
-      );
-    } catch {
-      /* ignore */
+    if (menuOpen) {
+      document.body.classList.add("menu-is-open");
+    } else {
+      document.body.classList.remove("menu-is-open");
     }
+    return () => {
+      document.body.classList.remove("menu-is-open");
+    };
+  }, [menuOpen]);
+
+  // Close dropdowns on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (langRef.current && !langRef.current.contains(event.target as Node)) {
+        setLangPickerOpen(false);
+      }
+      if (productsRef.current && !productsRef.current.contains(event.target as Node)) {
+        setProductsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  function handleNavClick() {
+    setMenuOpen(false);
+    setProductsOpen(false);
   }
 
-  const t = translations[lang];
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2">
-          <Image
-            src={"/images/logo.webp"}
-            alt="Akula Topping Logo"
-            width={110}
-            height={40}
-            quality={80}
-            className="h-auto w-auto object-contain"
-            priority
+    <header className="header">
+      <nav className="nav" aria-label={isAr ? "القائمة الرئيسية" : "Main navigation"}>
+        <Link href="/#home" aria-label={isAr ? "أكولة الرئيسية" : "Akula home"} onClick={handleNavClick}>
+          <img
+            data-image-slot="asset:akula-topping-logo-new.jpg"
+            className="logo"
+            src="/assets/akula-topping-logo-new.jpg"
+            alt="Akula Topping"
           />
         </Link>
-        <div className="flex items-center gap-4">
-          <div className="flex gap-2">
-            <nav className="hidden md:flex items-center gap-8">
-              <Link
-                href="/"
-                className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
-              >
-                {t.home}
-              </Link>
-              <Link
-                href="/products"
-                className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
-              >
-                {t.products}
-              </Link>
 
-              <Link
-                href="/about"
-                className="relative text-sm font-medium text-foreground transition hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
-              >
-                {t.about}
-              </Link>
-            </nav>
+        <div className={`links ${menuOpen ? "open" : ""}`} id="navlinks">
+          <div className="mobile-menu-head">
+            <span>{isAr ? "القائمة" : "Menu"}</span>
             <button
-              onClick={toggleLang}
-              aria-label="Toggle language"
-              className="ml-2 rounded border px-3 py-1 text-sm"
+              id="menu-close"
+              aria-label={isAr ? "إغلاق القائمة" : "Close menu"}
+              onClick={() => setMenuOpen(false)}
             >
-              {lang === "en" ? "العربية" : "EN"}
+              ×
             </button>
           </div>
-          {/* Mobile: hamburger */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setMenuOpen((s) => !s)}
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
-              aria-expanded={menuOpen}
-              className="p-2 rounded-md border"
-            >
-              {!menuOpen ? (
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4 6h16M4 12h16M4 18h16"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6 18L18 6M6 6l12 12"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
 
-      {/* Mobile menu overlay */}
-      {menuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur z-40 border-t">
-          <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            <Link
-              href="/"
-              onClick={() => setMenuOpen(false)}
-              className="text-lg font-medium"
-            >
-              {t.home}
-            </Link>
-            <Link
-              href="/products"
-              onClick={() => setMenuOpen(false)}
-              className="text-lg font-medium"
-            >
-              {t.products}
-            </Link>
-            <Link
-              href="/about"
-              onClick={() => setMenuOpen(false)}
-              className="text-lg font-medium"
-            >
-              {t.about}
-            </Link>
-          </div>
+          <Link href="/#home" onClick={handleNavClick}>
+            <span className="nav-icon">⌂</span>
+            {isAr ? "الرئيسية" : "Home"}
+          </Link>
+
+          <details
+            ref={productsRef}
+            className="nav-products"
+            open={productsOpen}
+            onToggle={(e) => setProductsOpen((e.target as HTMLDetailsElement).open)}
+          >
+            <summary>
+              <span className="nav-icon">⊕</span>
+              {isAr ? "المنتجات" : "Products"}
+            </summary>
+            <div>
+              <Link href="/products" onClick={handleNavClick}>
+                {isAr ? "كل المنتجات" : "All products"}
+              </Link>
+              <Link href="/products?category=topping" onClick={handleNavClick}>
+                {isAr ? "التوبينج" : "Toppings"}
+              </Link>
+              <Link href="/products?category=fruit" onClick={handleNavClick}>
+                {isAr ? "صوصات الفاكهة" : "Fruit sauces"}
+              </Link>
+            </div>
+          </details>
+
+          <Link href="/store" onClick={handleNavClick}>
+            <span className="nav-icon">▣</span>
+            {isAr ? "متجر المبيعات" : "Sales store"}
+          </Link>
+
+          <Link href="/about" onClick={handleNavClick}>
+            <span className="nav-icon">ⓘ</span>
+            {isAr ? "من نحن" : "About us"}
+          </Link>
+
+          <Link href="/recipes" onClick={handleNavClick}>
+            <span className="nav-icon">▤</span>
+            {isAr ? "وصفاتنا" : "Recipes"}
+          </Link>
+
+          <Link href="/contact" onClick={handleNavClick}>
+            <span className="nav-icon">✉</span>
+            {isAr ? "تواصل معنا" : "Contact us"}
+          </Link>
+
+          <Link href="/journal" onClick={handleNavClick}>
+            <span className="nav-icon">▧</span>
+            {isAr ? "المجلة" : "Journal"}
+          </Link>
+
+          <Link href="/partners" onClick={handleNavClick}>
+            <span className="nav-icon">♧</span>
+            {isAr ? "الشراكات" : "Partnerships"}
+          </Link>
         </div>
-      )}
+
+        <Link className="btn" href="/contact" onClick={handleNavClick}>
+          {isAr ? "استفسر عن التوريد ↗" : "Supply enquiries ↗"}
+        </Link>
+
+        <details
+          ref={langRef}
+          className="language-picker"
+          open={langPickerOpen}
+          onToggle={(e) => setLangPickerOpen((e.target as HTMLDetailsElement).open)}
+        >
+          <summary>
+            <span className="flag" aria-hidden="true">
+              {isAr ? "🇪🇬" : "🇬🇧"}
+            </span>
+            {isAr ? "العربية" : "English"}
+          </summary>
+          <button
+            type="button"
+            className="language-switch"
+            onClick={() => {
+              toggleLang();
+              setLangPickerOpen(false);
+            }}
+            aria-label={isAr ? "التبديل إلى الإنجليزية" : "Switch to Arabic"}
+            style={{
+              background: "none",
+              border: "none",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              cursor: "pointer",
+              width: "100%",
+              padding: "8px 12px",
+              color: "inherit",
+              font: "inherit",
+              textAlign: "start",
+            }}
+          >
+            <span className="flag" aria-hidden="true">
+              {isAr ? "🇬🇧" : "🇪🇬"}
+            </span>
+            <span>{isAr ? "English" : "العربية"}</span>
+          </button>
+        </details>
+
+        <button
+          className="menu"
+          aria-label={isAr ? "فتح القائمة" : "Open menu"}
+          aria-expanded={menuOpen}
+          aria-controls="navlinks"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </button>
+      </nav>
     </header>
   );
 }

@@ -1,39 +1,41 @@
 @import "tailwindcss";
+@import "./reference_styles.css";
 
-/* CSS Variables */
+/* Akula Topping Global Enhancements */
 :root {
-  --main-color: #256799;
-  --secondary-color: #f59e25;
-  --foreground: #000000;
-  --background: #ffffff;
-  --text: #189e5d;
-  --font-sans: Arial, Helvetica, sans-serif;
+  --green: #124635;
+  --gold: #b89760;
+  --cream: #f6f4ed;
+  --ink: #18261f;
+  --main-color: #124635;
+  --secondary-color: #c39b6e;
 }
 
-/* Tailwind theme variables */
 @theme inline {
   --color-main: var(--main-color);
   --color-secondary: var(--secondary-color);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
-  --color-logo: var(--text);
-  --font-sans: var(--font-sans);
+  --color-brand-green: var(--green);
+  --color-brand-gold: var(--gold);
+  --color-brand-cream: var(--cream);
+  --color-brand-ink: var(--ink);
 }
 
-/* Global styles */
-html,
-body {
-  min-height: 100%;
-  font-family: var(--font-sans);
-  color: var(--foreground);
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
-/* RTL support: when html dir is rtl, make layout flow right-to-left */
-[dir="rtl"] {
+[dir="rtl"],
+html[lang="ar"] {
   direction: rtl;
+  font-family: Tahoma, Arial, "Segoe UI", sans-serif;
 }
 
-[dir="rtl"] .container,
-.rtl .container {
-  text-align: right;
+/* Ensure focus-visible is always styled */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
 }
