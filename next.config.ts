@@ -1,7 +1,16 @@
-module.exports = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   images: {
     qualities: [25, 50, 75, 80],
     unoptimized: false,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.supabase.co",
+        pathname: "/storage/v1/object/public/**",
+      },
+    ],
   },
   async rewrites() {
     return [
@@ -16,3 +25,5 @@ module.exports = {
     ];
   },
 };
+
+export default nextConfig;

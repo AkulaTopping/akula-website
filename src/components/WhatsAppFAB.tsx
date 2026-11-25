@@ -9,7 +9,7 @@ export default function WhatsAppFAB() {
   return (
     <a
       className="floating-wa"
-      href="https://api.whatsapp.com/send?phone=201050677740"
+      href="https://wa.me/201050677740"
       target="_blank"
       rel="noopener noreferrer"
       aria-label={isAr ? "محادثة مع أكولة عبر واتساب" : "Chat with Akula on WhatsApp"}

@@ -115,13 +115,9 @@ export default function Footer() {
           <Link href="/about">{isAr ? "من نحن" : "About us"}</Link>
           <Link href="/products">{isAr ? "مجموعة المنتجات" : "Product collection"}</Link>
           <Link href="/recipes">{isAr ? "أفكار ووصفات" : "Ideas & recipes"}</Link>
-          <a
-            href="https://wa.me/201050677740?text=I%20am%20interested%20in%20distribution%20and%20partnerships%20with%20Akula"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href="/partners">
             {isAr ? "التوزيع والشراكات" : "Distribution & partnerships"}
-          </a>
+          </Link>
           <Link href="/contact">{isAr ? "تواصل معنا" : "Contact us"}</Link>
         </nav>
 

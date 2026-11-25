@@ -6,14 +6,30 @@ import { useLanguage } from "../../context/LanguageContext";
 import { useDetailModal } from "../../context/DetailModalContext";
 import { productsData, flavourProfilesData, type ProductItem } from "../../utils/referenceData";
 
-export default function ProductsSection() {
+function toArDigits(n: number): string {
+  return String(n).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[Number(d)] || d);
+}
+
+interface ProductsSectionProps {
+  initialProducts?: ProductItem[];
+}
+
+export default function ProductsSection({ initialProducts }: ProductsSectionProps) {
   const { isAr } = useLanguage();
   const { openModal } = useDetailModal();
   const [activeCategory, setActiveCategory] = useState<"all" | "topping" | "fruit">("all");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const products = initialProducts ?? productsData;
+
+  const counts = useMemo(() => {
+    const topping = products.filter((p) => p.category === "topping").length;
+    const fruit = products.filter((p) => p.category === "fruit").length;
+    return { total: products.length, topping, fruit };
+  }, [products]);
+
   const filteredProducts = useMemo(() => {
-    return productsData.filter((p) => {
+    return products.filter((p) => {
       const matchesCategory =
         activeCategory === "all" || p.category === activeCategory;
       const q = searchQuery.toLowerCase().trim();
@@ -26,27 +42,46 @@ export default function ProductsSection() {
         p.tag.toLowerCase().includes(q);
       return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, searchQuery]);
+  }, [products, activeCategory, searchQuery]);
 
   function handleProductDetails(product: ProductItem) {
-    const profile = flavourProfilesData[product.slug];
+    const profile = product.profile ?? flavourProfilesData[product.slug];
     const title = isAr ? product.nameAr : product.name;
-    const intro = profile ? (isAr ? profile.introAr : profile.intro) : (isAr ? product.descAr : product.desc);
+    const intro = profile
+      ? isAr
+        ? profile.introAr
+        : profile.intro
+      : isAr
+        ? product.descAr
+        : product.desc;
     const uses = profile
       ? (isAr ? profile.usesAr : profile.uses).map((u) => `• ${u}`).join("\n")
       : "";
-    const method = profile
-      ? (isAr ? `طريقة التحضير:\n${profile.methodAr}` : `Preparation idea:\n${profile.method}`)
-      : "";
-    const weight = profile ? (isAr ? `العبوة: ${profile.weightAr}` : `Weight: ${profile.weight}`) : "";
+    const method =
+      profile && (isAr ? profile.methodAr : profile.method)
+        ? isAr
+          ? `طريقة التحضير:\n${profile.methodAr}`
+          : `Preparation idea:\n${profile.method}`
+        : "";
+    const weight =
+      profile && (isAr ? profile.weightAr : profile.weight)
+        ? isAr
+          ? `العبوة: ${profile.weightAr}`
+          : `Weight: ${profile.weight}`
+        : "";
 
-    const bodyParts = [intro, uses ? `\n${isAr ? "الاستخدامات الموصى بها:" : "Recommended applications:"}\n${uses}` : "", method, weight].filter(Boolean);
+    const bodyParts = [
+      intro,
+      uses ? `\n${isAr ? "الاستخدامات الموصى بها:" : "Recommended applications:"}\n${uses}` : "",
+      method,
+      weight,
+    ].filter(Boolean);
 
     openModal({
       title,
       slug: product.slug,
       eyebrow: "AKULA TOPPING",
-      image: `/assets/${product.slug}.jpg`,
+      image: product.image || `/assets/${product.slug}.jpg`,
       body: bodyParts.join("\n\n"),
       whatsappText: isAr
         ? `مرحبًا أكولة، استفسر عن مواصفات وتوريد: ${product.nameAr}`
@@ -61,7 +96,11 @@ export default function ProductsSection() {
           <span className="eyebrow" dir="ltr">
             {isAr ? "كتالوج المنتجات" : "FIND YOUR FLAVOUR"}
           </span>
-          <h2>{isAr ? "١٥ نكهة مميزة" : "15 signature flavours"}</h2>
+          <h2>
+            {isAr
+              ? `${toArDigits(counts.total)} نكهة مميزة`
+              : `${counts.total} signature flavours`}
+          </h2>
         </div>
         <div style={{ maxWidth: "300px", width: "100%" }}>
           <input
@@ -89,7 +128,9 @@ export default function ProductsSection() {
           onClick={() => setActiveCategory("all")}
           aria-pressed={activeCategory === "all"}
         >
-          {isAr ? "كل النكهات (١٥)" : "All flavours (15)"}
+          {isAr
+            ? `كل النكهات (${toArDigits(counts.total)})`
+            : `All flavours (${counts.total})`}
         </button>
         <button
           type="button"
@@ -97,7 +138,9 @@ export default function ProductsSection() {
           onClick={() => setActiveCategory("topping")}
           aria-pressed={activeCategory === "topping"}
         >
-          {isAr ? "التوبينج (٤)" : "Toppings (4)"}
+          {isAr
+            ? `التوبينج (${toArDigits(counts.topping)})`
+            : `Toppings (${counts.topping})`}
         </button>
         <button
           type="button"
@@ -105,7 +148,9 @@ export default function ProductsSection() {
           onClick={() => setActiveCategory("fruit")}
           aria-pressed={activeCategory === "fruit"}
         >
-          {isAr ? "صوصات الفاكهة (١١)" : "Fruit sauces (11)"}
+          {isAr
+            ? `صوصات الفاكهة (${toArDigits(counts.fruit)})`
+            : `Fruit sauces (${counts.fruit})`}
         </button>
       </div>
 
@@ -119,6 +164,7 @@ export default function ProductsSection() {
             const isFirstInGroup =
               activeCategory === "all" &&
               (index === 0 || p.category !== filteredProducts[index - 1].category);
+            const imgSrc = p.image || `/assets/${p.slug}.jpg`;
 
             return (
               <React.Fragment key={p.slug}>
@@ -149,7 +195,7 @@ export default function ProductsSection() {
                   <Link href={`/products/${p.slug}`} style={{ display: "block", color: "inherit", textDecoration: "none" }}>
                     <img
                       className="product-image"
-                      src={`/assets/${p.slug}.jpg`}
+                      src={imgSrc}
                       loading="lazy"
                       decoding="async"
                       alt={`Akula ${p.name}`}

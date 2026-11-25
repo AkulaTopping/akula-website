@@ -32,7 +32,8 @@ export default function ProductDetailClient({
       : product.desc;
   const uses = profile ? (isAr ? profile.usesAr : profile.uses) : [];
   const method = profile ? (isAr ? profile.methodAr : profile.method) : "";
-  const weight = profile ? (isAr ? profile.weightAr : profile.weight) : (isAr ? "١٫٢٥٠ كجم" : "1.25 KG");
+  const weight = profile ? (isAr ? profile.weightAr : profile.weight) : "";
+  const mainImage = product.image || `/assets/${product.slug}.jpg`;
   const categoryLabel =
     product.category === "topping"
       ? isAr
@@ -44,8 +45,8 @@ export default function ProductDetailClient({
 
   const waMessage = encodeURIComponent(
     isAr
-      ? `مرحبًا أكولة، استفسر عن مواصفات وتوريد: ${product.nameAr} (${weight}) والأسعار المتاحة.`
-      : `Hello Akula, I want to enquire about supply and pricing for: ${product.name} (${weight}).`
+      ? `مرحبًا أكولة، استفسر عن مواصفات وتوريد: ${product.nameAr}${weight ? ` (${weight})` : ""} والأسعار المتاحة.`
+      : `Hello Akula, I want to enquire about supply and pricing for: ${product.name}${weight ? ` (${weight})` : ""}.`
   );
   const waUrl = `https://wa.me/${contactDetails.whatsappNumber}?text=${waMessage}`;
 
@@ -112,7 +113,7 @@ export default function ProductDetailClient({
             }}
           >
             <img
-              src={`/assets/${product.slug}.jpg`}
+              src={mainImage}
               alt={title}
               style={{
                 width: "100%",
@@ -160,19 +161,21 @@ export default function ProductDetailClient({
             >
               {isAr ? "مكونات طبيعية ١٠٠٪" : "100% Natural Origins"}
             </span>
-            <span
-              style={{
-                fontSize: "11px",
-                padding: "4px 10px",
-                background: "#fdf8ef",
-                color: "var(--gold)",
-                borderRadius: "2px",
-                fontWeight: 600,
-                border: "1px solid #e7d8be",
-              }}
-            >
-              {weight}
-            </span>
+            {weight && (
+              <span
+                style={{
+                  fontSize: "11px",
+                  padding: "4px 10px",
+                  background: "#fdf8ef",
+                  color: "var(--gold)",
+                  borderRadius: "2px",
+                  fontWeight: 600,
+                  border: "1px solid #e7d8be",
+                }}
+              >
+                {weight}
+              </span>
+            )}
           </div>
         </div>
 
@@ -292,28 +295,14 @@ export default function ProductDetailClient({
               fontSize: "12px",
             }}
           >
-            <div>
-              <span style={{ color: "#8a968a", display: "block" }}>
-                {isAr ? "العبوة والوزن الصافي" : "Net Weight / Volume"}
-              </span>
-              <strong style={{ color: "var(--ink)", fontSize: "14px" }}>{weight}</strong>
-            </div>
-            <div>
-              <span style={{ color: "#8a968a", display: "block" }}>
-                {isAr ? "نوع العبوة" : "Packaging Format"}
-              </span>
-              <strong style={{ color: "var(--ink)", fontSize: "14px" }}>
-                {isAr ? "زجاجة ضغط مع فوهة دقيقة" : "Squeeze Bottle w/ Nozzle"}
-              </strong>
-            </div>
-            <div>
-              <span style={{ color: "#8a968a", display: "block" }}>
-                {isAr ? "مدة الصلاحية" : "Shelf Life"}
-              </span>
-              <strong style={{ color: "var(--ink)", fontSize: "14px" }}>
-                {isAr ? "١٨ شهرًا من تاريخ الإنتاج" : "18 Months"}
-              </strong>
-            </div>
+            {weight && (
+              <div>
+                <span style={{ color: "#8a968a", display: "block" }}>
+                  {isAr ? "العبوة والوزن الصافي" : "Net Weight / Volume"}
+                </span>
+                <strong style={{ color: "var(--ink)", fontSize: "14px" }}>{weight}</strong>
+              </div>
+            )}
             <div>
               <span style={{ color: "#8a968a", display: "block" }}>
                 {isAr ? "بلد المنشأ" : "Country of Origin"}
@@ -377,7 +366,7 @@ export default function ProductDetailClient({
                 <Link href={`/products/${rel.slug}`} style={{ display: "block" }}>
                   <img
                     className="product-image"
-                    src={`/assets/${rel.slug}.jpg`}
+                    src={rel.image || `/assets/${rel.slug}.jpg`}
                     loading="lazy"
                     decoding="async"
                     alt={`Akula ${rel.name}`}

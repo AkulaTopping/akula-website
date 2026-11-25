@@ -63,6 +63,9 @@ export function DetailModalProvider({ children }: { children: React.ReactNode })
           className="dialog"
           id="detail"
           open
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="dialog-title"
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               closeModal();

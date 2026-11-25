@@ -173,4 +173,4 @@ export const gmail = "akulatopping@gmail.com";
 export const facebook =
   "https://www.facebook.com/profile.php?id=61586971604087";
 export const facebookMessages = "https://m.me/akulatopping";
-export const instagram = "https://www.instagram.com/akulatopping/";
+export const instagram = "https://www.instagram.com/akula_topping?jplx=YXdueTJtYml3bWk=";

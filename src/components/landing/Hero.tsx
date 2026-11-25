@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { useLanguage } from "../../context/LanguageContext";
 import { heroSlides } from "../../utils/referenceData";
 
@@ -49,12 +50,12 @@ export default function Hero() {
         />
         <p>{isAr ? currentSlide.descAr : currentSlide.desc}</p>
         <div className="hero-actions">
-          <a className="btn" href="/products">
+          <Link className="btn" href="/products">
             {isAr ? "استكشف المنتجات" : "Explore products"}
-          </a>
-          <a className="btn outline ghost" href="/recipes">
+          </Link>
+          <Link className="btn outline ghost" href="/recipes">
             {isAr ? "أفكار التقديم" : "Serving inspiration"}
-          </a>
+          </Link>
         </div>
       </div>
 

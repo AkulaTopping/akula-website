@@ -1,35 +1,30 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import {
-  productsData,
-  flavourProfilesData,
-} from "../../../utils/referenceData";
+import { flavourProfilesData } from "../../../utils/referenceData";
+import { getPublishedProductBySlug } from "../../../lib/products-repository";
 import ProductDetailClient from "./ProductDetailClient";
+
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateStaticParams() {
-  return productsData.map((product) => ({
-    slug: product.slug,
-  }));
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = productsData.find((p) => p.slug === slug);
+  const { product } = await getPublishedProductBySlug(slug);
   if (!product) {
     return {
       title: "Product Not Found | Akula Topping",
     };
   }
 
-  const profile = flavourProfilesData[slug];
+  const profile = product.profile ?? flavourProfilesData[slug];
 
   return {
-    title: `${product.name} | Akula Topping`,
+    title: product.name,
     description: profile?.intro || product.desc,
     openGraph: {
       title: `${product.name} | Akula Topping`,
@@ -46,22 +41,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProductDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const product = productsData.find((p) => p.slug === slug);
+  const { product, related } = await getPublishedProductBySlug(slug);
 
   if (!product) {
     notFound();
   }
 
-  const profile = flavourProfilesData[slug];
-  const relatedProducts = productsData
-    .filter((p) => p.category === product.category && p.slug !== product.slug)
-    .slice(0, 4);
+  const profile = product.profile ?? flavourProfilesData[slug];
 
   return (
     <ProductDetailClient
       product={product}
       profile={profile}
-      relatedProducts={relatedProducts}
+      relatedProducts={related}
     />
   );
 }

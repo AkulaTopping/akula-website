@@ -8,17 +8,22 @@ import EditorialSection from "../components/landing/EditorialSection";
 import FeaturedRecipes from "../components/landing/FeaturedRecipes";
 import ComingSoonSection from "../components/landing/ComingSoonSection";
 import JournalSection from "../components/landing/JournalSection";
+import { getPublishedProducts } from "../lib/products-repository";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const { products } = await getPublishedProducts();
+
   return (
     <main className="home-content">
       <Hero />
       <Ticker />
       <BrandFilm />
       <WorldPreview />
-      <ProductsSection />
+      <ProductsSection initialProducts={products} />
       <ProfessionalSection />
-      <EditorialSection />
+      <EditorialSection initialProducts={products} />
       <FeaturedRecipes />
       <ComingSoonSection />
       <JournalSection />
